@@ -4,7 +4,7 @@ import {Avatar, Box, Divider, IconButton, Stack, Switch} from "@mui/material";
 import {styled, useTheme} from "@mui/material/styles";
 import Logo from "../../assets/Images/logo.ico";
 import {Nav_Buttons} from "../../data";
-import {Gear} from "phosphor-react";
+import {ChatCircleDots, Gear, Phone, Users, Calendar } from "phosphor-react";
 import { faker } from "@faker-js/faker";
 import useSettings from "../../hooks/useSettings";
 
@@ -68,44 +68,44 @@ const DashboardLayout = () => {
       <Box p={2} sx={{backgroundColor: theme.palette.background.paper, boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)", height: "100vh", width: 100}}>
         <Stack direction={"column"} alignItems={"center"} justifyContent={"space-between"} sx={{height: "100%"}} spacing={3}>
             <Stack alignItems={"center"} spacing={4}>
-                <Box sx={{backgroundColor: theme.palette.primary.main, height:64, width:64, borderRadius: 1.5}}>
+                <Box>
                     <img src={Logo} alt={"Chat App Logo"}/>
                 </Box>
                 <Stack spacing={3} sx={{width: "max-content"}} direction={"column"} alignItems={"center"}>
                     {Nav_Buttons.map((el) =>
-                            el.index === selected ?
-                                (
-                                    <Box sx={{backgroundColor: theme.palette.primary.main, borderRadius: 1.5}}>
-                                        <IconButton key={el.index} sx={{width: "max-content", color: theme.palette.mode === "light" ? "#000" : theme.palette.text.primary}}>
-                                            {el.icon}
-                                        </IconButton>
-                                    </Box>
-                                )
-                                :
-                                (
-                                    <IconButton onClick={() => {
-                                        setSelected(el.index);
-                                    }}
-                                                key={el.index}
-                                                sx={{width: "max-content", color: "#000"}}>
-                                        {el.icon}
-                                    </IconButton>
-                                )
-                       )}
-                    <Divider sx={{width: "48px"}} />
-                    {selected === 3
-                        ? (<Box p={1} sx={{backgroundColor: theme.palette.primary.main, borderRadius: 1.5}}>
-                                <IconButton
-                                    sx={{width: "max-content", color: theme.palette.mode === "light" ? "#000" : theme.palette.text.primary}}
-                                >
-                                    <Gear />
+                        el.index === selected ?
+                            (
+                                <IconButton key={el.index} sx={{ width: "max-content", color: theme.palette.mode === "light" ? "#000" : theme.palette.text.primary }}>
+                                    {el.index === 0 ? <ChatCircleDots size={32} color="#000fff" /> : null}
+                                    {el.index === 1 ? <Users size={32} color="#000fff" /> : null}
+                                    {el.index === 2 ? <Phone size={32} color="#000fff" /> : null}
+                                    {el.index === 3 ? <Calendar size={32} color="#000fff" /> : null}
                                 </IconButton>
-                            </Box>) :
+                            )
+                            :
+                            (
+                                <IconButton onClick={() => {
+                                    setSelected(el.index);
+                                }}
+                                            key={el.index}
+                                            sx={{ width: "max-content", color: "#000" }}>
+                                    {el.icon}
+                                </IconButton>
+                            )
+                    )}
+                    <Divider sx={{width: "48px"}} />
+                    {selected === 4
+                        ? (<IconButton
+                                sx={{width: "max-content", color: theme.palette.mode === "light" ? "#000" : theme.palette.text.primary}}
+                            >
+                                <Gear size={32} color="#000fff" />
+                            </IconButton>
+                            ) :
                             (<IconButton
                                 onClick={() => {
-                                setSelected(3);
+                                setSelected(4);
                             }}>
-                                    <Gear />
+                                    <Gear size={32} />
                             </IconButton>)}
                 </Stack>
             </Stack>
