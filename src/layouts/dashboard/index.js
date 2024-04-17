@@ -76,10 +76,10 @@ const DashboardLayout = () => {
                         el.index === selected ?
                             (
                                 <IconButton key={el.index} sx={{ width: "max-content", color: theme.palette.mode === "light" ? "#000" : theme.palette.text.primary }}>
-                                    {el.index === 0 ? <ChatCircleDots size={32} color={theme.palette.primary.main} /> : null}
-                                    {el.index === 1 ? <Users size={32} color={theme.palette.primary.main} /> : null}
-                                    {el.index === 2 ? <Phone size={32} color={theme.palette.primary.main} /> : null}
-                                    {el.index === 3 ? <Calendar size={32} color={theme.palette.primary.main} /> : null}
+                                    {el.index === 0 ? <ChatCircleDots color={theme.palette.primary.main} /> : null}
+                                    {el.index === 1 ? <Users color={theme.palette.primary.main} /> : null}
+                                    {el.index === 2 ? <Phone color={theme.palette.primary.main} /> : null}
+                                    {el.index === 3 ? <Calendar color={theme.palette.primary.main} /> : null}
                                 </IconButton>
                             )
                             :
@@ -88,7 +88,7 @@ const DashboardLayout = () => {
                                     setSelected(el.index);
                                 }}
                                             key={el.index}
-                                            sx={{ width: "max-content", color: "#000" }}>
+                                            sx={{ width: "max-content" }}>
                                     {el.icon}
                                 </IconButton>
                             )
@@ -98,14 +98,14 @@ const DashboardLayout = () => {
                         ? (<IconButton
                                 sx={{width: "max-content", color: theme.palette.mode === "light" ? "#000" : theme.palette.text.primary}}
                             >
-                                <Gear size={32} color={theme.palette.primary.main} />
+                                <Gear color={theme.palette.primary.main} />
                             </IconButton>
                             ) :
                             (<IconButton
                                 onClick={() => {
                                 setSelected(4);
                             }}>
-                                    <Gear size={32} />
+                                    <Gear />
                             </IconButton>)}
                 </Stack>
             </Stack>

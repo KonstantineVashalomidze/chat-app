@@ -41,7 +41,7 @@ const ChatElement = ({ id, name, img, msg, time, unread, online }) => {
     return (
         <Box sx={{ width: "100%", borderRadius: 1, backgroundColor: theme.palette.mode === "light" ? "#fff" : theme.palette.background.default }} p={2}>
             <Stack direction="row" alignItems="center" justifyContent="space-between">
-                <Stack direction="row" spacing={2} alignItems="center">
+                <Stack direction="row" spacing={2} alignItems="center" >
                     {online ? (
                         <StyledBadge overlap="circular" anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} variant="dot">
                             <Avatar src={faker.image.avatar()} />

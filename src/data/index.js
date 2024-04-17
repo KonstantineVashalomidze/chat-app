@@ -28,19 +28,19 @@ const Profile_Menu = [
 const Nav_Buttons = [
   {
     index: 0,
-    icon: <ChatCircleDots size={32} />,
+    icon: <ChatCircleDots />,
   },
   {
     index: 1,
-    icon: <Users size={32} />,
+    icon: <Users />,
   },
   {
     index: 2,
-    icon: <Phone size={32} />,
+    icon: <Phone />,
   },
   {
     index: 3,
-    icon: <Calendar size={32} />
+    icon: <Calendar />
   }
 ];
 
