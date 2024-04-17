@@ -17,7 +17,6 @@ import cssStyles from "../../../utils/cssStyles";
 import { NAVBAR, defaultSettings } from "../../../config";
 //
 import Iconify from "../../Iconify";
-import Scrollbar from "../../Scrollbar";
 //
 import ToggleButton from "./ToggleButton";
 import SettingDirection from "./SettingDirection";
@@ -134,21 +133,20 @@ export default function SettingsDrawer() {
 
               <Divider sx={{ borderStyle: "dashed" }} />
 
-              <Scrollbar sx={{ flexGrow: 1 }}>
-                <Stack spacing={3} sx={{ p: 3 }}>
-                  <Stack spacing={1.5}>
-                    <Typography variant="subtitle2">Direction</Typography>
-                    <SettingDirection />
-                  </Stack>
-
-                  <Stack spacing={1.5}>
-                    <Typography variant="subtitle2">Presets</Typography>
-                    <SettingColorPresets />
-                  </Stack>
-
-                  <SettingFullscreen />
+              <Stack spacing={3} sx={{ p: 3, flexGrow: 1, overflow: "auto", height: "100%" }}>
+                <Stack spacing={1.5}>
+                  <Typography variant="subtitle2">Direction</Typography>
+                  <SettingDirection />
                 </Stack>
-              </Scrollbar>
+
+                <Stack spacing={1.5}>
+                  <Typography variant="subtitle2">Presets</Typography>
+                  <SettingColorPresets />
+                </Stack>
+
+                <SettingFullscreen />
+              </Stack>
+
             </RootStyle>
           </>
         )}

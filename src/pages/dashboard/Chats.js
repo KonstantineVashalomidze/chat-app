@@ -102,7 +102,7 @@ const Chats = () => {
                 <Stack p={3} spacing={2} sx={{ height: "100vh" }}>
                     <Stack direction={"row"} alignItems={"center"} justifyContent={"space-between"}>
                         <Typography variant={"h5"}>
-                            chats
+                            Chats
                         </Typography>
                         <IconButton >
                             <CircleDashed />
@@ -135,7 +135,7 @@ const Chats = () => {
                             </Stack>
                             <Stack spacing={2.4}>
                                 <Typography variant={"subtitle2"} sx={{ color: "#676767" }}>
-                                    AllChats
+                                    All Chats
                                 </Typography>
                                 {ChatList.filter((el) => !el.pinned).map((el) => {
                                     return <ChatElement {...el} />;

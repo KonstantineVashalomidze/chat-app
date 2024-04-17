@@ -76,10 +76,10 @@ const DashboardLayout = () => {
                         el.index === selected ?
                             (
                                 <IconButton key={el.index} sx={{ width: "max-content", color: theme.palette.mode === "light" ? "#000" : theme.palette.text.primary }}>
-                                    {el.index === 0 ? <ChatCircleDots size={32} color="#000fff" /> : null}
-                                    {el.index === 1 ? <Users size={32} color="#000fff" /> : null}
-                                    {el.index === 2 ? <Phone size={32} color="#000fff" /> : null}
-                                    {el.index === 3 ? <Calendar size={32} color="#000fff" /> : null}
+                                    {el.index === 0 ? <ChatCircleDots size={32} color={theme.palette.primary.main} /> : null}
+                                    {el.index === 1 ? <Users size={32} color={theme.palette.primary.main} /> : null}
+                                    {el.index === 2 ? <Phone size={32} color={theme.palette.primary.main} /> : null}
+                                    {el.index === 3 ? <Calendar size={32} color={theme.palette.primary.main} /> : null}
                                 </IconButton>
                             )
                             :
@@ -98,7 +98,7 @@ const DashboardLayout = () => {
                         ? (<IconButton
                                 sx={{width: "max-content", color: theme.palette.mode === "light" ? "#000" : theme.palette.text.primary}}
                             >
-                                <Gear size={32} color="#000fff" />
+                                <Gear size={32} color={theme.palette.primary.main} />
                             </IconButton>
                             ) :
                             (<IconButton
