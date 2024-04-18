@@ -1,5 +1,4 @@
-import react from 'react';
-import {Avatar, Badge, Box, Divider, IconButton, Stack, Typography} from "@mui/material";
+import {Avatar, Badge, Divider, IconButton, Stack, Typography} from "@mui/material";
 import {faker} from "@faker-js/faker";
 import {styled, useTheme} from "@mui/material/styles";
 import {CaretDown, MagnifyingGlass, Phone, VideoCamera} from "phosphor-react";
@@ -39,7 +38,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 
 
-const TopBar = () => {
+const Header = () => {
     const theme = useTheme();
 
 
@@ -80,4 +79,4 @@ const TopBar = () => {
 
 
 
-export default TopBar
+export default Header

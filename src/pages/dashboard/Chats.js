@@ -123,7 +123,7 @@ const Chats = () => {
                         </Stack>
                         <Divider />
                     </Stack>
-                    <Stack spacing={2} direction={"column"} sx={{ flexGrow: 1, overflow: "auto", height: "100%" }}>
+                    <Stack spacing={2} direction={"column"} sx={{ flexGrow: 1, overflow: "hidden", height: "100%" }}>
                         <SimpleBarReact style={{ maxHeight: "100%" }}>
                             <Stack spacing={2.4}>
                                 <Typography variant={"subtitle2"} sx={{ color: "#676767" }}>

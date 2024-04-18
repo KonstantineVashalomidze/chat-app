@@ -1,5 +1,4 @@
-import react from 'react';
-import {Box, IconButton, InputAdornment, Stack, TextField} from "@mui/material";
+import {IconButton, InputAdornment, Stack, TextField} from "@mui/material";
 import {styled, useTheme} from "@mui/material/styles";
 import {LinkSimple, PaperPlaneTilt, Smiley} from "phosphor-react";
 
@@ -14,7 +13,7 @@ const StyledInput = styled(TextField) (({theme}) => ({
 
 
 
-const InputBar = () => {
+const Footer = () => {
     const theme = useTheme();
     return (
         <Stack direction={"row"} alignItems={"center"} >
@@ -42,4 +41,4 @@ const InputBar = () => {
 
 
 
-export default InputBar
+export default Footer

@@ -1,8 +1,9 @@
-import react from 'react';
 import {Box, Stack} from "@mui/material";
-import TopBar from "./TopBar";
-import InputBar from "./InputBar";
+import Header from "./Header";
+import Footer from "./Footer";
 import {useTheme} from "@mui/material/styles";
+import Message from "./Message";
+import SimpleBarReact from "simplebar-react";
 
 
 const Conversation = () => {
@@ -18,23 +19,24 @@ const Conversation = () => {
 
 
     const conversationBackgroundColor = theme.palette.mode === "light"
-        ? "#fff"
+        ? "#F0F4FA"
         : theme.palette.background.paper;
 
     return (
         <Stack p={1} height={"100%"} maxHeight={"100vh"} width={"auto"} sx={{backgroundColor: conversationBackgroundColor }}>
             <Box p={2} sx={{width: "100%", backgroundColor: backgroundColor, boxShadow: { boxShadow } }}>
 
-                <TopBar />
+                <Header />
 
             </Box>
-            <Box sx={{width: "100%", flexGrow: 1}}>
-
-
+            <Box sx={{width: "100%", flexGrow: 1, overflow: "hidden", height: "100%"}} >
+                <SimpleBarReact style={{ maxHeight: "100%" }}>
+                    <Message />
+                </SimpleBarReact>
             </Box>
             <Box sx={{width: "100%", backgroundColor: backgroundColor, boxShadow: { boxShadow } }}>
 
-                <InputBar />
+                <Footer />
 
             </Box>
         </Stack>
