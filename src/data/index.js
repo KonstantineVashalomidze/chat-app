@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 import {
   Calendar,
-  ChatCircleDots,
+  ChatCircleDots, Chats,
   Gear,
   GearSix,
   Phone,
@@ -28,7 +28,7 @@ const Profile_Menu = [
 const Nav_Buttons = [
   {
     index: 0,
-    icon: <ChatCircleDots />,
+    icon: <Chats />,
   },
   {
     index: 1,

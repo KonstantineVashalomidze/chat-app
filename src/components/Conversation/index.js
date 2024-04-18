@@ -9,9 +9,7 @@ import SimpleBarReact from "simplebar-react";
 const Conversation = () => {
     const theme = useTheme();
 
-    const boxShadow = theme.palette.mode === "light"
-        ? "0px 0px 2px rgba(0, 0, 0, 0.25)"
-        : "0px 0px 2px rgba(255, 255, 255, 0.25)";
+
 
     const backgroundColor = theme.palette.mode === "light"
         ? "#fff"
@@ -24,7 +22,7 @@ const Conversation = () => {
 
     return (
         <Stack p={1} height={"100%"} maxHeight={"100vh"} width={"auto"} sx={{backgroundColor: conversationBackgroundColor }}>
-            <Box p={2} sx={{width: "100%", backgroundColor: backgroundColor, boxShadow: { boxShadow } }}>
+            <Box p={2} sx={{width: "100%", backgroundColor: backgroundColor, boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)" }}>
 
                 <Header />
 
@@ -34,7 +32,7 @@ const Conversation = () => {
                     <Message />
                 </SimpleBarReact>
             </Box>
-            <Box sx={{width: "100%", backgroundColor: backgroundColor, boxShadow: { boxShadow } }}>
+            <Box sx={{width: "100%", backgroundColor: backgroundColor, boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)" }}>
 
                 <Footer />
 

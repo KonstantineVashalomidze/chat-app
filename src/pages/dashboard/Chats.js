@@ -44,10 +44,10 @@ const ChatElement = ({ id, name, img, msg, time, unread, online }) => {
                 <Stack direction="row" spacing={2} alignItems="center" >
                     {online ? (
                         <StyledBadge overlap="circular" anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} variant="dot">
-                            <Avatar src={faker.image.avatar()} />
+                            <Avatar src={faker.image.avatar()} sx={{boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)"}} />
                         </StyledBadge>
                     ) : (
-                        <Avatar src={faker.image.avatar()} />
+                        <Avatar src={faker.image.avatar()} sx={{boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)"}} />
                     )}
                     <Stack spacing={0.3}>
                         <Typography variant="subtitle2">{name}</Typography>
@@ -86,12 +86,20 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: "inherit",
     "& .MuiInputBase-input": {
-        padding: theme.spacing(1, 1, 1, 0),
-        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-        width: "100%"
-    }
+        padding: theme.spacing(1.5), // Increased padding for better spacing
+        paddingLeft: `calc(1em + ${theme.spacing(4)})`, // Kept the left padding
+        width: "100%",
+        "&::placeholder": { // Styling for the placeholder text
+            color: theme.palette.text.secondary, // Use the theme's secondary text color
+            opacity: 1, // Ensure the placeholder is visible
+        },
+    },
+    "&:hover": { // Styles for the hover state
+        "& .MuiInputBase-input::placeholder": {
+            color: theme.palette.text.primary, // Use the theme's primary text color on hover
+        },
+    },
 }));
-
 const Chats = () => {
     const theme = useTheme();
 
@@ -102,22 +110,23 @@ const Chats = () => {
                 <Stack p={3} spacing={2} sx={{ height: "100vh" }}>
                     <Stack direction={"row"} alignItems={"center"} justifyContent={"space-between"}>
                         <Typography variant={"h5"}>
-                            Chats
+                            Conversations
                         </Typography>
                         <IconButton >
-                            <CircleDashed />
+                            <CircleDashed color={theme.palette.primary.main} />
                         </IconButton>
                     </Stack>
+                    <Divider />
                     <Stack sx={{ width: "100%" }}>
                         <Search >
                             <SearchIconWrapper >
-                                <MagnifyingGlass color={"#709CE6"} />
+                                <MagnifyingGlass color={theme.palette.primary.main} />
                             </SearchIconWrapper>
                             <StyledInputBase placeholder={"Search..."} />
                         </Search>
                     </Stack>
                     <Stack spcing={1}>
-                        <Stack direction={"row"} alignItems={"center"} spacing={1.5}>
+                        <Stack direction={"row"} alignItems={"center"} justifyContent={"space-between"} spacing={1.5}>
                             <ArchiveBox size={24} />
                             <Button>Archive</Button>
                         </Stack>

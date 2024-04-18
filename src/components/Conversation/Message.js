@@ -8,7 +8,7 @@ const Message = () => {
 
     return (
         <Box p={3} >
-            <Stack spacing={3}>
+            <Stack spacing={3} >
                 {Chat_History.map((el) => {
                     switch (el.type) {
                         case "divider":
@@ -26,7 +26,6 @@ const Message = () => {
                                 default:
                                     return <TextMessage el={el} />;
                             }
-                            break;
                         default:
                             return <></>;
                     }

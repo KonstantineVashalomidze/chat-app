@@ -46,7 +46,7 @@ const Header = () => {
         <Stack alignItems={"center"} direction={"row"} justifyContent={"space-between"} sx={{width: "100%", height: "100%"}}>
             <Stack direction={"row"} spacing={2} >
                 <StyledBadge overlap={"circular"} anchorOrigin={{vertical: "bottom", horizontal: "right"}} variant={"dot"}>
-                    <Avatar alt={faker.name.fullName()} src={faker.image.avatar()} />
+                    <Avatar alt={faker.name.fullName()} src={faker.image.avatar()} sx={{boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)"}} />
 
                 </StyledBadge>
                 <Stack spacing={0.2} >

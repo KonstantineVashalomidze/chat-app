@@ -3,7 +3,7 @@ import {useTheme} from "@mui/material/styles";
 import {Avatar, Box, Divider, IconButton, Stack} from "@mui/material";
 import Logo from "../../assets/Images/logo.ico";
 import {Nav_Buttons} from "../../data";
-import {Calendar, ChatCircleDots, Gear, Phone, Users} from "phosphor-react";
+import {Calendar, ChatCircleDots, Chats, Gear, Phone, Users} from "phosphor-react";
 import {faker} from "@faker-js/faker";
 import useSettings from "../../hooks/useSettings";
 import AntSwitch from "../../components/AntSwitch";
@@ -23,12 +23,33 @@ const SideBar = () => {
                         {Nav_Buttons.map((el) =>
                             el.index === selected ?
                                 (
-                                    <IconButton key={el.index} sx={{ width: "max-content", color: theme.palette.mode === "light" ? "#000" : theme.palette.text.primary }}>
-                                        {el.index === 0 ? <ChatCircleDots color={theme.palette.primary.main} /> : null}
-                                        {el.index === 1 ? <Users color={theme.palette.primary.main} /> : null}
-                                        {el.index === 2 ? <Phone color={theme.palette.primary.main} /> : null}
-                                        {el.index === 3 ? <Calendar color={theme.palette.primary.main} /> : null}
-                                    </IconButton>
+                                    <Box
+                                        sx={{
+                                            position: "relative",
+                                            color: theme.palette.mode === "light" ? "#000" : theme.palette.text.primary,
+                                        }}
+                                    >
+                                        <IconButton
+                                            sx={{
+                                                width: "max-content",
+                                            }}
+                                        >
+                                            {el.index === 0 ? <Chats color={theme.palette.primary.main} /> : null}
+                                            {el.index === 1 ? <Users color={theme.palette.primary.main} /> : null}
+                                            {el.index === 2 ? <Phone color={theme.palette.primary.main} /> : null}
+                                            {el.index === 3 ? <Calendar color={theme.palette.primary.main} /> : null}
+                                        </IconButton>
+                                        <Box
+                                            sx={{
+                                                position: "absolute",
+                                                top: 0,
+                                                left: -8,
+                                                height: "100%",
+                                                width: 2,
+                                                backgroundColor: theme.palette.primary.main,
+                                            }}
+                                        />
+                                    </Box>
                                 )
                                 :
                                 (
@@ -43,11 +64,29 @@ const SideBar = () => {
                         )}
                         <Divider sx={{width: "48px"}} />
                         {selected === 4
-                            ? (<IconButton
-                                    sx={{width: "max-content", color: theme.palette.mode === "light" ? "#000" : theme.palette.text.primary}}
+                            ? (
+                                <Box
+                                    sx={{
+                                        position: "relative",
+                                        color: theme.palette.mode === "light" ? "#000" : theme.palette.text.primary,
+                                    }}
                                 >
-                                    <Gear color={theme.palette.primary.main} />
-                                </IconButton>
+                                    <IconButton
+                                        sx={{width: "max-content", color: theme.palette.mode === "light" ? "#000" : theme.palette.text.primary}}
+                                    >
+                                        <Gear color={theme.palette.primary.main} />
+                                    </IconButton>
+                                    <Box
+                                        sx={{
+                                            position: "absolute",
+                                            top: 0,
+                                            left: -8,
+                                            height: "100%",
+                                            width: 2,
+                                            backgroundColor: theme.palette.primary.main,
+                                        }}
+                                    />
+                                </Box>
                             ) :
                             (<IconButton
                                 onClick={() => {
@@ -58,10 +97,9 @@ const SideBar = () => {
                     </Stack>
                 </Stack>
                 <Stack spacing={4}>
-                    <AntSwitch onChange={() => { onToggleMode(); }} defaultChcked />
-                    <Avatar src={faker.image.avatar()} />
+                    <AntSwitch onChange={() => { onToggleMode(); }} checkedColor={theme.palette.primary.main} defaultChcked />
+                    <Avatar src={faker.image.avatar()} sx={{boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)"}} />
                 </Stack>
-
             </Stack>
         </Box>
     );

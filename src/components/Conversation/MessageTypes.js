@@ -25,6 +25,7 @@ const TextMessage = ({el}) => {
                      backgroundColor: el.incoming ? theme.palette.background.default : theme.palette.primary.main,
                      borderRadius: 1.5,
                      width: "max-content",
+                     boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)"
             }} >
                 <Typography variant={"body2"} color={el.incoming ? theme.palette.text : "#fff"} >
                     {el.message}
@@ -40,12 +41,13 @@ const TextMessage = ({el}) => {
 const MediaMessage = ({el}) => {
     const theme = useTheme();
     return (
-        <Stack direction={"row"} justifyContent={el.incoming ? "start" : "end"}>
+        <Stack direction={"row"} justifyContent={el.incoming ? "start" : "end"} >
             <Box p={1.5}
                  sx={{
                      backgroundColor: el.incoming ? theme.palette.background.default : theme.palette.primary.main,
                      borderRadius: 1.5,
                      width: "max-content",
+                     boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)"
                  }} >
                 <Stack spacing={1}>
                     <img src={el.img} alt={el.message} style={{ maxHeight: 210, borderRadius: "10px" }} />
@@ -62,12 +64,13 @@ const MediaMessage = ({el}) => {
 const ReplyMessage = ({el}) => {
     const theme = useTheme();
     return (
-        <Stack direction={"row"} justifyContent={el.incoming ? "start" : "end"}>
+        <Stack direction={"row"} justifyContent={el.incoming ? "start" : "end"} >
             <Box p={1.5}
                  sx={{
                      backgroundColor: el.incoming ? theme.palette.background.default : theme.palette.primary.main,
                      borderRadius: 1.5,
                      width: "max-content",
+                     boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)"
                  }} >
                 <Stack spacing={2} >
                     <Stack p={2} direction={"column"} spacing={3} alignItems={"center"} sx={{backgroundColor: theme.palette.background.paper, borderRadius: 1}}>
@@ -89,12 +92,13 @@ const ReplyMessage = ({el}) => {
 const LinkMessage = ({el}) => {
     const theme = useTheme();
     return (
-        <Stack direction={"row"} justifyContent={el.incoming ? "start" : "end"}>
+        <Stack direction={"row"} justifyContent={el.incoming ? "start" : "end"} >
             <Box p={1.5}
                  sx={{
                      backgroundColor: el.incoming ? theme.palette.background.default : theme.palette.primary.main,
                      borderRadius: 1.5,
                      width: "max-content",
+                     boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)"
                  }} >
                 <Stack spacing={2} >
                     <Stack p={2} spacing={3} alignItems={"center"} sx={{backgroundColor: theme.palette.background.paper, borderRadius: 2}}>
@@ -129,6 +133,7 @@ const DocumentMessage = ({el}) => {
                      backgroundColor: el.incoming ? theme.palette.background.default : theme.palette.primary.main,
                      borderRadius: 1.5,
                      width: "max-content",
+                     boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)"
                  }} >
                 <Stack spacing={2}>
                     <Stack p={2} direction={"row"} spacing={2} alignItems={"center"} sx={{ backgroundColor: theme.palette.background.paper }}>

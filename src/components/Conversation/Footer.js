@@ -1,6 +1,6 @@
 import {IconButton, InputAdornment, Stack, TextField} from "@mui/material";
 import {styled, useTheme} from "@mui/material/styles";
-import {LinkSimple, PaperPlaneTilt, Smiley} from "phosphor-react";
+import {LinkSimple, LinkSimpleHorizontal, PaperPlaneRight, PaperPlaneTilt, Smiley} from "phosphor-react";
 
 
 const StyledInput = styled(TextField) (({theme}) => ({
@@ -18,11 +18,10 @@ const Footer = () => {
     return (
         <Stack direction={"row"} alignItems={"center"} >
             <StyledInput variant="standard" fullWidth placeholder={"Write message..."}  InputProps={{
-                disableUnderline: true,
                 startAdornment:
                 <InputAdornment >
                     <IconButton >
-                        <LinkSimple color={theme.palette.primary.main} />
+                        <LinkSimpleHorizontal color={theme.palette.primary.main} />
                     </IconButton>
                 </InputAdornment>,
                 endAdornment:
@@ -30,11 +29,11 @@ const Footer = () => {
                         <IconButton >
                             <Smiley color={theme.palette.primary.main} />
                         </IconButton>
+                        <IconButton >
+                            <PaperPlaneRight color={theme.palette.primary.main} />
+                        </IconButton>
                     </InputAdornment>
             }} />
-            <IconButton >
-                <PaperPlaneTilt color={theme.palette.primary.main} />
-            </IconButton>
         </Stack>
     )
 }
