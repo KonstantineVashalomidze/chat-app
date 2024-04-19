@@ -163,7 +163,7 @@ const Contact = () => {
                         </Typography>
                     </Stack>
                 </Stack>
-                <Stack direction={"row"} alignItems={"center"} spacing={2} justifyContent={"center"}>
+                <Stack p={1} direction={"row"} alignItems={"center"} spacing={2} justifyContent={"center"}>
                     <Button startIcon={<UserMinus weight="fill" />} fullwidth variant={"outlined"} sx={{borderRadius: 2}}>
                         Block
                     </Button>
