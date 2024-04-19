@@ -1,7 +1,8 @@
-import React from 'react';
-import {Box, Divider, IconButton, Link, Stack, Typography} from "@mui/material";
+import React, {useState} from 'react';
+import {Box, Divider, IconButton, Link, Menu, MenuItem, Stack, Typography} from "@mui/material";
 import {useTheme} from "@mui/material/styles";
-import {Download, Image} from "phosphor-react";
+import {DotsThreeOutline, Download, Image} from "phosphor-react";
+import {Message_options} from "../../data";
 
 
 const TimeLine = ({el}) => {
@@ -15,11 +16,14 @@ const TimeLine = ({el}) => {
     )
 }
 
-
 const TextMessage = ({el}) => {
     const theme = useTheme();
+    const [showOptions, setShowOptions] = useState(false);
     return (
-        <Stack direction={"row"} justifyContent={el.incoming ? "start" : "end"}>
+        <Stack onMouseEnter={() => setShowOptions(true)}
+               onMouseLeave={() => setShowOptions(false)}
+               direction={"row"} justifyContent={el.incoming ? "start" : "end"} alignItems={"center"} spacing={1}>
+            {!el.incoming &&  <MessageOptions show={showOptions} />}
             <Box p={1.5}
                  sx={{
                      backgroundColor: el.incoming ? theme.palette.background.default : theme.palette.primary.main,
@@ -31,6 +35,7 @@ const TextMessage = ({el}) => {
                     {el.message}
                 </Typography>
             </Box>
+            {el.incoming &&  <MessageOptions show={showOptions} />}
         </Stack>
     )
 }
@@ -40,8 +45,12 @@ const TextMessage = ({el}) => {
 
 const MediaMessage = ({el}) => {
     const theme = useTheme();
+    const [showOptions, setShowOptions] = useState(false);
     return (
-        <Stack direction={"row"} justifyContent={el.incoming ? "start" : "end"} >
+        <Stack onMouseEnter={() => setShowOptions(true)}
+               onMouseLeave={() => setShowOptions(false)}
+               direction={"row"} justifyContent={el.incoming ? "start" : "end"} alignItems={"center"} spacing={1}>
+            {!el.incoming &&  <MessageOptions show={showOptions} />}
             <Box p={1.5}
                  sx={{
                      backgroundColor: el.incoming ? theme.palette.background.default : theme.palette.primary.main,
@@ -56,6 +65,7 @@ const MediaMessage = ({el}) => {
                     </Typography>
                 </Stack>
             </Box>
+            {el.incoming &&  <MessageOptions show={showOptions} />}
         </Stack>
     )
 }
@@ -63,8 +73,12 @@ const MediaMessage = ({el}) => {
 
 const ReplyMessage = ({el}) => {
     const theme = useTheme();
+    const [showOptions, setShowOptions] = useState(false);
     return (
-        <Stack direction={"row"} justifyContent={el.incoming ? "start" : "end"} >
+        <Stack onMouseEnter={() => setShowOptions(true)}
+               onMouseLeave={() => setShowOptions(false)}
+               direction={"row"} justifyContent={el.incoming ? "start" : "end"} alignItems={"center"} spacing={1}>
+            {!el.incoming &&  <MessageOptions show={showOptions} />}
             <Box p={1.5}
                  sx={{
                      backgroundColor: el.incoming ? theme.palette.background.default : theme.palette.primary.main,
@@ -83,6 +97,7 @@ const ReplyMessage = ({el}) => {
                     </Typography>
                 </Stack>
             </Box>
+            {el.incoming &&  <MessageOptions show={showOptions} />}
         </Stack>
     )
 }
@@ -91,8 +106,13 @@ const ReplyMessage = ({el}) => {
 
 const LinkMessage = ({el}) => {
     const theme = useTheme();
+    const [showOptions, setShowOptions] = useState(false);
+
     return (
-        <Stack direction={"row"} justifyContent={el.incoming ? "start" : "end"} >
+        <Stack onMouseEnter={() => setShowOptions(true)}
+               onMouseLeave={() => setShowOptions(false)}
+               direction={"row"} justifyContent={el.incoming ? "start" : "end"} alignItems={"center"} spacing={1}>
+            {!el.incoming &&  <MessageOptions show={showOptions} />}
             <Box p={1.5}
                  sx={{
                      backgroundColor: el.incoming ? theme.palette.background.default : theme.palette.primary.main,
@@ -117,6 +137,7 @@ const LinkMessage = ({el}) => {
                     </Stack>
                 </Stack>
             </Box>
+            {el.incoming &&  <MessageOptions show={showOptions} />}
         </Stack>
     )
 }
@@ -126,8 +147,12 @@ const LinkMessage = ({el}) => {
 
 const DocumentMessage = ({el}) => {
     const theme = useTheme();
+    const [showOptions, setShowOptions] = useState(false);
     return (
-        <Stack direction={"row"} justifyContent={el.incoming ? "start" : "end"}>
+        <Stack onMouseEnter={() => setShowOptions(true)}
+               onMouseLeave={() => setShowOptions(false)}
+               direction={"row"} justifyContent={el.incoming ? "start" : "end"} alignItems={"center"} spacing={1}>
+            {!el.incoming &&  <MessageOptions show={showOptions} />}
             <Box p={1.5}
                  sx={{
                      backgroundColor: el.incoming ? theme.palette.background.default : theme.palette.primary.main,
@@ -137,7 +162,7 @@ const DocumentMessage = ({el}) => {
                  }} >
                 <Stack spacing={2}>
                     <Stack p={2} direction={"row"} spacing={2} alignItems={"center"} sx={{ backgroundColor: theme.palette.background.paper }}>
-                        <Image />
+                        <Image size={32} />
                         <Typography variant={"caption"}>
                             Abstract.png
                         </Typography>
@@ -150,9 +175,59 @@ const DocumentMessage = ({el}) => {
                     </Typography>
                 </Stack>
             </Box>
+            {el.incoming &&  <MessageOptions show={showOptions} />}
         </Stack>
     )
 }
+
+
+const MessageOptions = ({ show }) => {
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const theme = useTheme();
+
+    return (
+        <>
+            {show && (
+                <IconButton
+                    id="basic-button"
+                    aria-controls={open ? "basic-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? "true" : undefined}
+                    onClick={handleClick}
+                >
+                    <DotsThreeOutline color={theme.palette.primary.main} />
+                </IconButton>
+            )}
+            <Menu
+                id="basic-menu"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                MenuListProps={{
+                    "aria-labelledby": "basic-button",
+                }}
+                anchorOrigin={{vertical: "bottom", horizontal: "right"}}
+                transformOrigin={{vertical: "bottom", horizontal: "left"}}
+            >
+                <Stack spacing={1} px={1}>
+                    {Message_options.map((el) => (
+                        <MenuItem key={el.title} onClick={handleClose}>
+                            {el.title}
+                        </MenuItem>
+                    ))}
+                </Stack>
+            </Menu>
+        </>
+    );
+};
 
 
 

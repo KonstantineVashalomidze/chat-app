@@ -70,6 +70,7 @@ const Search = styled("div")(({ theme }) => ({
     backgroundColor: alpha(theme.palette.background.default, 1),
     marginRight: theme.spacing(2),
     marginLeft: 0,
+    boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)",
     width: "100%"
 }));
 
