@@ -2,8 +2,8 @@ import React, {useState} from "react";
 import {useTheme} from "@mui/material/styles";
 import {Avatar, Box, Divider, IconButton, Menu, MenuItem, Stack} from "@mui/material";
 import Logo from "../../assets/Images/logo.ico";
-import {Message_options, Nav_Buttons, Profile_Menu} from "../../data";
-import {Calendar, ChatCircleDots, Chats, Gear, Phone, Users} from "phosphor-react";
+import {Nav_Buttons, Profile_Menu} from "../../data";
+import {Calendar, Chats, Gear, Phone, Users} from "phosphor-react";
 import {faker} from "@faker-js/faker";
 import useSettings from "../../hooks/useSettings";
 import AntSwitch from "../../components/AntSwitch";
@@ -107,35 +107,46 @@ const SideBar = () => {
                     </Stack>
                 </Stack>
                 <Stack spacing={4}>
-                    <AntSwitch onChange={() => { onToggleMode(); }} checkedColor={theme.palette.primary.main} defaultChcked />
-                    <Avatar id="basic-button" aria-controls={open ? "basic-menu" : undefined} aria-haspopup="true" aria-expanded={open ? "true" : undefined} onClick={handleClick}  src={faker.image.avatar()} sx={{boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)"}} />
-                    <Menu
-                        id="basic-menu"
-                        anchorEl={anchorEl}
-                        open={open}
-                        onClose={handleClose}
-                        MenuListProps={{
-                            "aria-labelledby": "basic-button",
-                        }}
-                        anchorOrigin={{vertical: "bottom", horizontal: "right"}}
-                        transformOrigin={{vertical: "bottom", horizontal: "left"}}
-                    >
-                        <Stack spacing={1} px={1}>
-                            {Profile_Menu.map((el) => (
-                                <MenuItem key={el.title} onClick={handleClose}>
-                                    <Stack sx={{width: 100}} direction={"row"} alignItems={"center"} justifyContent={"space-between"}>
-                                        <span >
+                    <AntSwitch onChange={() => {
+                        onToggleMode();
+                    }} checkedColor={theme.palette.primary.main} defaultChcked/>
+                        <div style={{
+                            border: "2px solid " + theme.palette.primary.main,
+                            borderRadius: "50%",
+                            padding: "2px"
+                        }}>
+                            <Avatar id="basic-button" aria-controls={open ? "basic-menu" : undefined} aria-haspopup="true"
+                                    aria-expanded={open ? "true" : undefined} onClick={handleClick}
+                                    src={faker.image.avatar()} sx={{boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)"}}/>
+                        </div>
+                        <Menu
+                            id="basic-menu"
+                            anchorEl={anchorEl}
+                            open={open}
+                            onClose={handleClose}
+                            MenuListProps={{
+                                "aria-labelledby": "basic-button",
+                            }}
+                            anchorOrigin={{vertical: "bottom", horizontal: "right"}}
+                            transformOrigin={{vertical: "bottom", horizontal: "left"}}
+                        >
+                            <Stack spacing={1} px={1}>
+                                {Profile_Menu.map((el) => (
+                                    <MenuItem key={el.title} onClick={handleClose}>
+                                        <Stack sx={{width: 100}} direction={"row"} alignItems={"center"}
+                                               justifyContent={"space-between"}>
+                                        <span>
                                             {el.title}
                                         </span>
-                                        {el.icon}
-                                    </Stack>
-                                </MenuItem>
-                            ))}
-                        </Stack>
-                    </Menu>
+                                            {el.icon}
+                                        </Stack>
+                                    </MenuItem>
+                                ))}
+                            </Stack>
+                        </Menu>
                 </Stack>
             </Stack>
         </Box>
-    );
+);
 };
 export default SideBar;

@@ -43,10 +43,17 @@ const ChatElement = ({ id, name, img, msg, time, unread, online }) => {
             <Stack direction="row" alignItems="center" justifyContent="space-between">
                 <Stack direction="row" spacing={2} alignItems="center" >
                     {online ? (
-                        <StyledBadge overlap="circular" anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} variant="dot">
-                            <Avatar src={faker.image.avatar()} sx={{boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)"}} />
+                        <StyledBadge overlap="circular" anchorOrigin={{vertical: 'bottom', horizontal: 'right'}}
+                                     variant="dot">
+                            <div style={{
+                                border: "2px solid " + theme.palette.primary.main,
+                                borderRadius: "50%",
+                                padding: "2px"
+                            }}>
+                                <Avatar src={faker.image.avatar()} sx={{boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)"}}/>
+                            </div>
                         </StyledBadge>
-                    ) : (
+                        ) : (
                         <Avatar src={faker.image.avatar()} sx={{boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)"}} />
                     )}
                     <Stack spacing={0.3}>

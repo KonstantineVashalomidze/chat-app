@@ -2,6 +2,8 @@ import {Avatar, Badge, Divider, IconButton, Stack, Typography} from "@mui/materi
 import {faker} from "@faker-js/faker";
 import {styled, useTheme} from "@mui/material/styles";
 import {CaretDown, MagnifyingGlass, Phone, VideoCamera} from "phosphor-react";
+import {toggleSideBar} from "../../redux/slices/app";
+import {useDispatch} from "react-redux";
 
 
 
@@ -40,14 +42,13 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 const Header = () => {
     const theme = useTheme();
-
+    const dispatch = useDispatch();
 
     return (
         <Stack alignItems={"center"} direction={"row"} justifyContent={"space-between"} sx={{width: "100%", height: "100%"}}>
-            <Stack direction={"row"} spacing={2} >
+            <Stack direction={"row"} spacing={2} onClick={() => {dispatch(toggleSideBar())} } >
                 <StyledBadge overlap={"circular"} anchorOrigin={{vertical: "bottom", horizontal: "right"}} variant={"dot"}>
                     <Avatar alt={faker.name.fullName()} src={faker.image.avatar()} sx={{boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)"}} />
-
                 </StyledBadge>
                 <Stack spacing={0.2} >
                     <Typography variant={"subtitle2"}>

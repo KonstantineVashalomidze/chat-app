@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 import {
   Calendar,
-  ChatCircleDots, Chats,
+  Chats,
   Gear,
   GearSix,
   Phone,
