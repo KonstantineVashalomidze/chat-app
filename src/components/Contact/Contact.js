@@ -1,7 +1,18 @@
-import React from "react";
+import React, {useState} from "react";
 import {Avatar, Box, Button, Divider, IconButton, Stack, Typography} from "@mui/material";
 import {useTheme} from "@mui/material/styles";
-import {BellSimple, CaretRight, Phone, Sparkle, Star, UserCircleMinus, UserMinus, VideoCamera, X} from "phosphor-react";
+import {
+    BellSimple,
+    BellSimpleSlash,
+    CaretRight,
+    Phone,
+    Sparkle,
+    Star,
+    UserCircleMinus,
+    UserMinus,
+    VideoCamera,
+    X
+} from "phosphor-react";
 import {useDispatch} from "react-redux";
 import {toggleSideBar} from "../../redux/slices/app";
 import {faker} from "@faker-js/faker"
@@ -12,7 +23,7 @@ import AntSwitch from "../AntSwitch";
 const Contact = () => {
     const theme = useTheme();
     const dispatch = useDispatch();
-
+    const [muted, setMute] = useState(false);
 
     const backgroundColor = theme.palette.mode === "light"
         ? "#fff"
@@ -122,13 +133,19 @@ const Contact = () => {
                 <Box p={1} sx={{width: "100%"}}>
                     <Stack direction={"row"} justifyContent={"space-between"}>
                         <Stack direction={"row"} alignItems={"center"} spacing={1}>
-                            <BellSimple color={theme.palette.primary.main} weight="fill" />
+                            {
+                                muted
+                                ? <BellSimpleSlash color={theme.palette.primary.main} weight="fill" /> : <BellSimple color={theme.palette.primary.main} weight="fill" />
+                            }
                             <Typography variant={"body2"} >
                                 Mute
                             </Typography>
                         </Stack>
-                        <AntSwitch onChange={() => {
-                        }} checkedColor={theme.palette.primary.main} defaultChcked/>
+                        <AntSwitch onChange={() =>
+                        {
+                            setMute((prev) => !prev);
+                        }}
+                        checkedColor={theme.palette.primary.main} defaultChcked/>
                     </Stack>
                 </Box>
                 <Divider />
