@@ -7,18 +7,19 @@ import cssStyles from '../../../utils/cssStyles';
 //
 import Iconify from '../../Iconify';
 import { IconButtonAnimate } from '../../animate';
+import {SlidersHorizontal} from "phosphor-react";
 
 // ----------------------------------------------------------------------
 
 const RootStyle = styled('span')(({ theme }) => ({
   ...cssStyles(theme).bgBlur({ opacity: 0.64 }),
-  right: 0,
-  top: '50%',
+  left: 0,
+  top: '70%',
   position: 'fixed',
   marginTop: theme.spacing(-3),
   padding: theme.spacing(0.5),
   zIndex: theme.zIndex.drawer + 2,
-  borderRadius: '24px 0 20px 24px',
+  borderRadius: '0 20px 20px 0',
   boxShadow: `-12px 12px 32px -4px ${alpha(
     theme.palette.mode === 'light' ? theme.palette.grey[600] : theme.palette.common.black,
     0.36
@@ -61,7 +62,7 @@ export default function ToggleButton({ notDefault, open, onToggle }) {
             },
           }}
         >
-          <Iconify icon="eva:options-2-fill" width={20} height={20} />
+          <SlidersHorizontal icon="eva:options-2-fill" width={20} height={20} />
         </IconButtonAnimate>
       </Tooltip>
     </RootStyle>
