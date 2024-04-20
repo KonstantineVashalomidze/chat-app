@@ -14,7 +14,7 @@ import {
     X
 } from "phosphor-react";
 import {useDispatch} from "react-redux";
-import {toggleSideBar} from "../../redux/slices/app";
+import {toggleSideBar, updateSidebarType} from "../../redux/slices/app";
 import {faker} from "@faker-js/faker"
 import SimpleBarReact from "simplebar-react";
 import AntSwitch from "../AntSwitch";
@@ -102,7 +102,7 @@ const Contact = () => {
                             <Typography variant={"subtitle1"} >
                                 {faker.random.numeric()}
                             </Typography>
-                            <IconButton >
+                            <IconButton onClick={() => { dispatch(updateSidebarType("SHARED")) }} >
                                 <CaretRight color={theme.palette.primary.main} />
                             </IconButton>
                         </Stack>
@@ -124,7 +124,7 @@ const Contact = () => {
                                 Top Messages
                             </Typography>
                         </Stack>
-                        <IconButton >
+                        <IconButton onClick={() => { dispatch(updateSidebarType("TOP_MESSAGES")) }} >
                             <CaretRight color={theme.palette.primary.main} />
                         </IconButton>
                     </Stack>
