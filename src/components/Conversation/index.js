@@ -22,7 +22,7 @@ const Conversation = () => {
 
     return (
         <Stack p={1} height={"100%"} maxHeight={"100vh"} width={"auto"} sx={{ backgroundColor: conversationBackgroundColor, boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)", }}>
-            <Box p={2} sx={{width: "100%", backgroundColor: backgroundColor }}>
+            <Box p={2} sx={{width: "100%", backgroundColor: backgroundColor, boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)", }}>
 
                 <Header />
 
@@ -32,7 +32,7 @@ const Conversation = () => {
                     <Message />
                 </SimpleBarReact>
             </Box>
-            <Box sx={{width: "100%", backgroundColor: backgroundColor }}>
+            <Box sx={{boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)", width: "100%", backgroundColor: backgroundColor }}>
 
                 <Footer />
 
