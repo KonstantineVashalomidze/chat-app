@@ -5,6 +5,7 @@ import Conversation from "../../components/Conversation";
 import Contact from "../../components/Contact/Contact";
 import {useSelector} from "react-redux";
 import SharedMessages from "../../components/SharedMessages/SharedMessages";
+import TopMessages from "../../components/SharedMessages/TopMessages";
 
 
 const GeneralApp = () => {
@@ -18,8 +19,7 @@ const GeneralApp = () => {
                     case "CONTACT":
                         return <Contact />;
                     case "TOP_MESSAGES":
-                        // return <TopMessages />;
-                        break;
+                        return <TopMessages />;
                     case "SHARED":
                         return <SharedMessages />;
                     default:

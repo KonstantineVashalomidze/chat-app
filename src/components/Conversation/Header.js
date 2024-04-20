@@ -69,7 +69,7 @@ const Header = () => {
                 <IconButton >
                     <MagnifyingGlass color={theme.palette.primary.main} />
                 </IconButton>
-                <Divider orientation={"vertical"} flexItem />
+                <Divider orientation={"vertical"} color={theme.palette.primary.main} flexItem />
                 <IconButton >
                     <CaretDown color={theme.palette.primary.main} />
                 </IconButton>

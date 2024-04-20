@@ -29,7 +29,7 @@ const Conversation = () => {
             </Box>
             <Box sx={{width: "100%", flexGrow: 1, overflow: "hidden", height: "100%"}} >
                 <SimpleBarReact style={{ maxHeight: "100%" }}>
-                    <Message />
+                    <Message menu={true} />
                 </SimpleBarReact>
             </Box>
             <Box sx={{boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)", width: "100%", backgroundColor: backgroundColor }}>
