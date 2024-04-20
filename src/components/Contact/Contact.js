@@ -1,12 +1,22 @@
-import React, {useState} from "react";
-import {Avatar, Box, Button, Divider, IconButton, Stack, Typography} from "@mui/material";
+import React, { useState} from "react";
+import {
+    Avatar,
+    Box,
+    Button,
+    Dialog, DialogActions,
+    DialogContent, DialogContentText,
+    DialogTitle,
+    Divider,
+    IconButton, Slide,
+    Stack,
+    Typography
+} from "@mui/material";
 import {useTheme} from "@mui/material/styles";
 import {
     BellSimple,
     BellSimpleSlash,
     CaretRight,
     Phone,
-    Sparkle,
     Star,
     UserCircleMinus,
     UserMinus,
@@ -20,10 +30,83 @@ import SimpleBarReact from "simplebar-react";
 import AntSwitch from "../AntSwitch";
 
 
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+});
+
+
+const BlockDialog = ({open, handleClose}) => {
+
+
+    return (
+        <Dialog
+            open={open}
+            TransitionComponent={Transition}
+            keepMounted
+            onClose={handleClose}
+            aria-describedby="alert-dialog-slide-description"
+        >
+            <DialogTitle>{"Block"}</DialogTitle>
+            <DialogContent>
+                <DialogContentText id="alert-dialog-slide-description">
+                    Are you sure you want to block this contact?
+                    you will no longer be able to make messages/calls to this person.
+                </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+                <Button onClick={handleClose}>Cancel</Button>
+                <Button onClick={handleClose}>Block</Button>
+            </DialogActions>
+        </Dialog>
+    )
+}
+
+
+
+
+const DeleteDialog = ({open, handleClose}) => {
+
+
+    return (
+        <Dialog
+            open={open}
+            TransitionComponent={Transition}
+            keepMounted
+            onClose={handleClose}
+            aria-describedby="alert-dialog-slide-description"
+        >
+            <DialogTitle>{"Delete"}</DialogTitle>
+            <DialogContent>
+                <DialogContentText id="alert-dialog-slide-description">
+                    Are you sure you want to delete this conversation?
+                    you will no longer be able to see previous messages/calls to this person.
+                </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+                <Button onClick={handleClose}>Cancel</Button>
+                <Button onClick={handleClose}>Delete</Button>
+            </DialogActions>
+        </Dialog>
+    )
+}
+
+
 const Contact = () => {
     const theme = useTheme();
     const dispatch = useDispatch();
     const [muted, setMute] = useState(false);
+    const [showBlock, setShowBlock] = useState(false);
+    const [showDelete, setShowDelete] = useState(false);
+
+    const handleCloseBlock = () => {
+        setShowBlock(false);
+    }
+
+
+    const handleCloseDelete = () => {
+        setShowDelete(false);
+    }
 
     const backgroundColor = theme.palette.mode === "light"
         ? "#fff"
@@ -164,14 +247,16 @@ const Contact = () => {
                     </Stack>
                 </Stack>
                 <Stack p={1} direction={"row"} alignItems={"center"} spacing={2} justifyContent={"center"}>
-                    <Button startIcon={<UserMinus weight="fill" />} fullwidth variant={"outlined"} sx={{borderRadius: 2}}>
+                    <Button onClick={() => {setShowBlock(true);}} startIcon={<UserMinus weight="fill" />} fullwidth variant={"outlined"} sx={{borderRadius: 2}}>
                         Block
                     </Button>
-                    <Button startIcon={<UserCircleMinus weight="fill" />} fullwidth variant={"outlined"} sx={{borderRadius: 2}}>
+                    <Button onClick={() => {setShowDelete(true)}} startIcon={<UserCircleMinus weight="fill" />} fullwidth variant={"outlined"} sx={{borderRadius: 2}}>
                         Delete
                     </Button>
                 </Stack>
             </Stack>
+            {showBlock && <BlockDialog open={showBlock} handleClose={handleCloseBlock} />}
+            {showDelete && <DeleteDialog open={showDelete} handleClose={handleCloseDelete} />}
         </Box>
     );
 };

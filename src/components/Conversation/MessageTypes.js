@@ -1,8 +1,7 @@
-import React, {useState} from 'react';
-import {Box, Divider, IconButton, Link, Menu, MenuItem, Stack, Typography} from "@mui/material";
+import React from 'react';
 import {useTheme} from "@mui/material/styles";
-import {DotsThreeOutline, Download, Image} from "phosphor-react";
-import {Message_options} from "../../data";
+import {Download, Image} from "phosphor-react";
+import {Divider, IconButton, Link, Stack, Typography} from "@mui/material";
 
 
 const TimeLine = ({el}) => {

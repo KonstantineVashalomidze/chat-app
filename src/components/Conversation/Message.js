@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Box, Divider, IconButton, Menu, MenuItem, Stack} from "@mui/material";
+import {Box, IconButton, Menu, MenuItem, Stack} from "@mui/material";
 import {Chat_History, Message_options} from "../../data";
 import {DocumentMessage, LinkMessage, MediaMessage, ReplyMessage, TextMessage, TimeLine} from "./MessageTypes";
 import {useTheme} from "@mui/material/styles";
