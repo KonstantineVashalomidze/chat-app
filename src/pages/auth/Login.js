@@ -100,7 +100,7 @@ const Login = () => {
                     </Box>
                 </form>
             </Box>
-            <SocialAuth />
+            <SocialAuth isLogin={"Login"} />
         </Box>
     );
 };

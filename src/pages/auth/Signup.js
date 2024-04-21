@@ -101,7 +101,7 @@ const Registration = () => {
 
     return (
         <Box justifyContent={"center"} alignItems={"center"}>
-            <Box boxShadow={5} borderRadius={8} p={4}>
+            <Box boxShadow={5} borderRadius={8} p={3}>
                 <Stack
                     direction={"row"}
                     justifyContent={"space-between"}
@@ -118,7 +118,7 @@ const Registration = () => {
                     </Link>
                 </Typography>
                 <form onSubmit={handleSubmit}>
-                    <Box pb={4}>
+                    <Box pb={1}>
                         <TextField
                             fullWidth
                             label="Username"
@@ -140,7 +140,7 @@ const Registration = () => {
                             }}
                         />
                     </Box>
-                    <Box pb={4}>
+                    <Box pb={1}>
                         <TextField
                             fullWidth
                             label="Email"
@@ -212,7 +212,7 @@ const Registration = () => {
                     </Typography>
                 </Box>
             </Box>
-            <SocialAuth />
+            <SocialAuth isLogin={"Signup"} />
         </Box>
     );
 };
