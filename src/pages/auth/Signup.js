@@ -52,7 +52,8 @@ const PasswordField = ({ label, value, onChange, error, helperText }) => {
 };
 
 const Registration = () => {
-    const [username, setUsername] = useState("");
+    const [name, setName] = useState("");
+    const [surname, setSurname] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -65,7 +66,8 @@ const Registration = () => {
 
         if (Object.keys(validationErrors).length === 0) {
             // Handle registration logic here
-            console.log("Username:", username);
+            console.log("Name:", name);
+            console.log("Surname:", surname);
             console.log("Email:", email);
             console.log("Password:", password);
             console.log("Confirm Password:", confirmPassword);
@@ -73,11 +75,16 @@ const Registration = () => {
             setErrors(validationErrors);
         }
     };
+
     const validateForm = () => {
         const errors = {};
 
-        if (!username.trim()) {
-            errors.username = "Username is required";
+        if (!name.trim()) {
+            errors.name = "Name is required";
+        }
+
+        if (!surname.trim()) {
+            errors.surname = "Surname is required";
         }
 
         if (!email.trim()) {
@@ -118,19 +125,39 @@ const Registration = () => {
                     </Link>
                 </Typography>
                 <form onSubmit={handleSubmit}>
-                    <Box pb={1}>
+                    <Box pb={1} display="flex" gap={1}>
                         <TextField
                             fullWidth
-                            label="Username"
+                            label="Name"
                             type="text"
                             variant="outlined"
-                            value={username}
+                            value={name}
                             onChange={(e) => {
-                                setUsername(e.target.value);
-                                setErrors((prevErrors) => ({ ...prevErrors, username: "" }));
+                                setName(e.target.value);
+                                setErrors((prevErrors) => ({ ...prevErrors, name: "" }));
                             }}
-                            error={!!errors.username}
-                            helperText={errors.username}
+                            error={!!errors.name}
+                            helperText={errors.name}
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <User size={20} />
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />
+                        <TextField
+                            fullWidth
+                            label="Surname"
+                            type="text"
+                            variant="outlined"
+                            value={surname}
+                            onChange={(e) => {
+                                setSurname(e.target.value);
+                                setErrors((prevErrors) => ({ ...prevErrors, surname: "" }));
+                            }}
+                            error={!!errors.surname}
+                            helperText={errors.surname}
                             InputProps={{
                                 startAdornment: (
                                     <InputAdornment position="start">
