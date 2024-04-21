@@ -1,11 +1,11 @@
 import React from "react";
 import Chats from "./Chats";
 import {Box, Stack} from "@mui/material";
-import Conversation from "../../components/Conversation";
-import Contact from "../../components/Contact/Contact";
+import Conversation from "../../components/conversation";
+import Contact from "../../components/contact/Contact";
 import {useSelector} from "react-redux";
-import SharedMessages from "../../components/SharedMessages/SharedMessages";
-import TopMessages from "../../components/SharedMessages/TopMessages";
+import SharedMessages from "../../components/sharedMessages/SharedMessages";
+import TopMessages from "../../components/sharedMessages/TopMessages";
 
 
 const GeneralApp = () => {

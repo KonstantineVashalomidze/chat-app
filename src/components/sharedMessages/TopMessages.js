@@ -5,7 +5,7 @@ import {Box, IconButton, Stack, Typography} from "@mui/material";
 import {updateSidebarType} from "../../redux/slices/app";
 import {CaretLeft} from "phosphor-react";
 import SimpleBarReact from "simplebar-react";
-import Message from "../Conversation/Message";
+import Message from "../conversation/Message";
 
 const TopMessages = () => {
     const theme = useTheme();

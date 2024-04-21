@@ -7,7 +7,7 @@ import {useDispatch} from "react-redux";
 import SimpleBarReact from "simplebar-react";
 import {faker} from "@faker-js/faker"
 import {Shared_documents, Shared_links} from "../../data";
-import {DocumentMessage, LinkMessage} from "../Conversation/MessageTypes";
+import {DocumentMessage, LinkMessage} from "../conversation/MessageTypes";
 
 
 const Images = () => {
