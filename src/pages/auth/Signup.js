@@ -191,6 +191,26 @@ const Registration = () => {
                         </Button>
                     </Box>
                 </form>
+                <Box pt={2} pb={2}>
+                    <Typography variant="body2" align="center">
+                        By signing up, you agree to our{" "}
+                        <Link
+                            component={RouterLink}
+                            to="/terms-of-service"
+                            style={{ textDecoration: "underline" }}
+                        >
+                            Terms of Service
+                        </Link>{" "}
+                        and{" "}
+                        <Link
+                            component={RouterLink}
+                            to="/privacy-policy"
+                            style={{ textDecoration: "underline" }}
+                        >
+                            Privacy Policy
+                        </Link>
+                    </Typography>
+                </Box>
             </Box>
             <SocialAuth />
         </Box>
