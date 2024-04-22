@@ -1,17 +1,11 @@
-
-
-
 import React, {useState} from "react";
-import {Avatar, Badge, Box, Button, Divider, IconButton, InputBase, Stack, Typography} from "@mui/material";
-import {alpha, styled, useTheme} from "@mui/material/styles";
-import {ArchiveBox, CircleDashed, MagnifyingGlass, Plus} from "phosphor-react";
+import {Box, Button, Divider, IconButton, Stack, Typography} from "@mui/material";
+import {useTheme} from "@mui/material/styles";
+import {CircleDashed, MagnifyingGlass, Plus} from "phosphor-react";
 import SimpleBarReact from "simplebar-react";
 import {ChatList} from "../../data";
-import {faker} from "@faker-js/faker";
 import {ChatElement, Search, SearchIconWrapper, StyledInputBase} from "./Chats";
 import CreateGroup from "../../components/dialogs/group/CreateGroup";
-
-
 
 
 
