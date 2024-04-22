@@ -7,7 +7,7 @@ import { ChatList } from "../../data";
 import SimpleBarReact from "simplebar-react";
 import "simplebar-react/dist/simplebar.min.css";
 
-const StyledBadge = styled(Badge)(({ theme }) => ({
+export const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
         backgroundColor: '#44b700',
         color: '#44b700',
@@ -35,8 +35,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
         },
     },
 }));
-
-const ChatElement = ({ id, name, img, msg, time, unread, online }) => {
+export const ChatElement = ({ id, name, img, msg, time, unread, online }) => {
     const theme = useTheme();
     return (
         <Box sx={{ width: "100%", borderRadius: 1, backgroundColor: theme.palette.mode === "light" ? "#fff" : theme.palette.background.default }} p={2}>
@@ -70,8 +69,7 @@ const ChatElement = ({ id, name, img, msg, time, unread, online }) => {
     );
 };
 
-
-const Search = styled("div")(({ theme }) => ({
+export const Search = styled("div")(({ theme }) => ({
     position: "relative",
     borderRadius: 20,
     backgroundColor: alpha(theme.palette.background.default, 1),
@@ -81,7 +79,7 @@ const Search = styled("div")(({ theme }) => ({
     width: "100%"
 }));
 
-const SearchIconWrapper = styled("div")(({ theme }) => ({
+export const SearchIconWrapper = styled("div")(({ theme }) => ({
     padding: theme.spacing(0, 2),
     height: "100%",
     position: "absolute",
@@ -91,7 +89,7 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
     justifyContent: "center"
 }));
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
+export const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: "inherit",
     "& .MuiInputBase-input": {
         padding: theme.spacing(1.5), // Increased padding for better spacing
@@ -108,6 +106,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
         },
     },
 }));
+
 const Chats = () => {
     const theme = useTheme();
 
@@ -118,7 +117,7 @@ const Chats = () => {
     return (
         <>
             <Box
-                sx={{ position: "relative", width: 320, backgroundColor: theme.palette.mode === "light" ? "#F8FAFF" : theme.palette.background.paper, boxShadow: '0px 0px 2px rgba(0, 0, 0, 0.2)' }}>
+                sx={{ position: "relative", width: 320, backgroundColor: theme.palette.mode === "light" ? "#F8FAFF" : theme.palette.background.paper, boxShadow: '0px 0px 2px rgba(0, 0, 0, 0.25)' }}>
                 <Stack p={1} spacing={2} sx={{ height: "100vh" }}>
                     <Stack direction={"row"} alignItems={"center"} justifyContent={"space-between"} sx={{boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)", backgroundColor: backgroundColor }}>
                         <Typography p={1.5} variant={"h5"}>
@@ -138,7 +137,7 @@ const Chats = () => {
                     </Stack>
                     <Stack spcing={1}>
                         <Stack direction={"row"} alignItems={"center"} justifyContent={"space-between"} spacing={1.5}>
-                            <ArchiveBox size={24} />
+                            <ArchiveBox size={24} color={theme.palette.primary.main} />
                             <Button>Archive</Button>
                         </Stack>
                         <Divider />

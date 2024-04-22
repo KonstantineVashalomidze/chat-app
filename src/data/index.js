@@ -321,6 +321,24 @@ const Shared_documents = [
 
 ];
 
+// Dummy data for autocomplete options
+const User_options = [
+  "John Doe",
+  "Jane Smith",
+  "Michael Johnson",
+  "Emily Williams",
+  "David Brown",
+  "Sarah Davis",
+  "Robert Miller",
+  "Jessica Wilson",
+  "Christopher Moore",
+  "Ashley Taylor",
+];
+
+
+
+
+
 export {
   Profile_Menu,
   Nav_Setting,
@@ -330,4 +348,5 @@ export {
   Message_options,
   Shared_links,
   Shared_documents,
+  User_options,
 };
