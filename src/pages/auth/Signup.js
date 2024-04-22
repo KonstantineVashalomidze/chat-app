@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { EnvelopeSimple, Eye, EyeSlash, LockSimple, User } from "phosphor-react";
+import { EnvelopeSimple, LockSimple, User } from "phosphor-react";
 import {
     Box,
     Button,
-    IconButton,
     InputAdornment,
     Link,
     Stack,
@@ -14,36 +13,22 @@ import Logo from "../../assets/Images/logo.ico";
 import { Link as RouterLink } from "react-router-dom";
 import SocialAuth from "./SocialAuth";
 
-const PasswordField = ({ label, value, onChange, error, helperText }) => {
-    const [showPassword, setShowPassword] = useState(false);
-
+const PasswordField = ({ label, value, onChange, error, helperText, onFocus }) => {
     return (
         <TextField
             fullWidth
             label={label}
-            type={showPassword ? "text" : "password"}
+            type="password"
             variant="outlined"
             value={value}
             onChange={onChange}
             error={error}
             helperText={helperText}
+            onFocus={onFocus}
             InputProps={{
                 startAdornment: (
                     <InputAdornment position="start">
                         <LockSimple size={20} />
-                    </InputAdornment>
-                ),
-                endAdornment: (
-                    <InputAdornment position={"end"}>
-                        {showPassword ? (
-                            <IconButton onClick={() => setShowPassword((prev) => !prev)}>
-                                <Eye size={20} />
-                            </IconButton>
-                        ) : (
-                            <IconButton onClick={() => setShowPassword((prev) => !prev)}>
-                                <EyeSlash size={20} />
-                            </IconButton>
-                        )}
                     </InputAdornment>
                 ),
             }}
@@ -138,6 +123,7 @@ const Registration = () => {
                             }}
                             error={!!errors.name}
                             helperText={errors.name}
+                            onFocus={() => setErrors((prevErrors) => ({ ...prevErrors, name: "" }))}
                             InputProps={{
                                 startAdornment: (
                                     <InputAdornment position="start">
@@ -158,6 +144,7 @@ const Registration = () => {
                             }}
                             error={!!errors.surname}
                             helperText={errors.surname}
+                            onFocus={() => setErrors((prevErrors) => ({ ...prevErrors, surname: "" }))}
                             InputProps={{
                                 startAdornment: (
                                     <InputAdornment position="start">
@@ -180,6 +167,7 @@ const Registration = () => {
                             }}
                             error={!!errors.email}
                             helperText={errors.email}
+                            onFocus={() => setErrors((prevErrors) => ({ ...prevErrors, email: "" }))}
                             InputProps={{
                                 startAdornment: (
                                     <InputAdornment position="start">
@@ -196,6 +184,7 @@ const Registration = () => {
                             onChange={(e) => setPassword(e.target.value)}
                             error={!!errors.password}
                             helperText={errors.password}
+                            onFocus={() => setErrors((prevErrors) => ({ ...prevErrors, password: "" }))}
                         />
                     </Box>
                     <Box pb={2}>
@@ -205,6 +194,7 @@ const Registration = () => {
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             error={!!errors.confirmPassword}
                             helperText={errors.confirmPassword}
+                            onFocus={() => setErrors((prevErrors) => ({ ...prevErrors, confirmPassword: "" }))}
                         />
                     </Box>
                     <Box pt={2}>
