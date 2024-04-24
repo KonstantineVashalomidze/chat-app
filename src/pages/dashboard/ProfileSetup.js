@@ -23,6 +23,7 @@ const ProfileSetup = () => {
     const [about, setAbout] = useState("");
     const [nameError, setNameError] = useState(false);
     const [aboutError, setAboutError] = useState(false);
+    const [avatarImage, setAvatarImage] = useState(null);
 
     const backgroundColor =
         theme.palette.mode === "light"
@@ -50,6 +51,7 @@ const ProfileSetup = () => {
             // Handle save logic here
             console.log("Name:", name);
             console.log("About:", about);
+            console.log("Avatar Image:", avatarImage);
         }
     };
 
@@ -59,6 +61,21 @@ const ProfileSetup = () => {
 
     const handleAboutFocus = () => {
         setAboutError(false);
+    };
+
+    const handleAvatarChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setAvatarImage(file);
+        }
+    };
+
+    const handleAvatarDrop = (e) => {
+        e.preventDefault();
+        const file = e.dataTransfer.files[0];
+        if (file) {
+            setAvatarImage(file);
+        }
     };
 
     return (
@@ -111,13 +128,40 @@ const ProfileSetup = () => {
                                         border: "4px solid " + theme.palette.primary.main,
                                         borderRadius: "50%",
                                         padding: "2px",
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "center",
                                     }}
                                 >
                                     <Avatar
-                                        src={faker.image.avatar()}
-                                        alt={faker.name.firstName()}
+                                        src={avatarImage ? URL.createObjectURL(avatarImage) : faker.image.avatar()}
+                                        alt={name || "Avatar"}
                                         sx={{ height: 100, width: 100 }}
                                     />
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        style={{ display: "none" }}
+                                        id="avatar-upload"
+                                        onChange={handleAvatarChange}
+                                    />
+                                    <label
+                                        htmlFor="avatar-upload"
+                                        style={{
+                                            cursor: "pointer",
+                                            position: "absolute",
+                                            top: 0,
+                                            left: 0,
+                                            right: 0,
+                                            bottom: 0,
+                                        }}
+                                        onDrop={handleAvatarDrop}
+                                        onDragOver={(e) => e.preventDefault()}
+                                    >
+                                        <Typography variant="body2" color="primary">
+                                            {avatarImage ? "Change Avatar" : "Upload Avatar"}
+                                        </Typography>
+                                    </label>
                                 </div>
                             </Stack>
                             <TextField
@@ -126,7 +170,6 @@ const ProfileSetup = () => {
                                 onChange={(e) => setName(e.target.value)}
                                 variant="outlined"
                                 fullWidth
-                                sx={{py: 5}}
                                 error={nameError}
                                 helperText={nameError ? "Name must be at least 4 characters" : ""}
                                 onFocus={handleNameFocus}
@@ -137,7 +180,6 @@ const ProfileSetup = () => {
                                 onChange={(e) => setAbout(e.target.value)}
                                 variant="outlined"
                                 fullWidth
-                                sx={{py: 5}}
                                 multiline
                                 rows={4}
                                 error={aboutError}
