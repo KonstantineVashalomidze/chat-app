@@ -38,6 +38,7 @@ export default function Router() {
         { path: "app", element: <GeneralApp /> },
         { path: "settings", element: <Settings /> },
         { path: "group", element: <Group /> },
+        { path: "call-history", element: <CallHistory /> },
 
         { path: "404", element: <Page404 /> },
         { path: "*", element: <Navigate to="/404" replace /> },
@@ -76,6 +77,9 @@ const Group = Loadable(
 );
 
 
+const CallHistory = Loadable(
+    lazy(() => import("../pages/dashboard/CallHistory")),
+);
 
 
 

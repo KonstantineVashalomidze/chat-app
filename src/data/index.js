@@ -336,6 +336,22 @@ const User_options = [
 ];
 
 
+const Call_history = [
+
+    { id: 0, name: 'John Doe', img: faker.image.avatar(), callTime: new Date().getTime() - (2 * 60 * 60 * 1000), incoming: true, missed: false, online: true },
+    { id: 1, name: 'Jane Smith', img: faker.image.avatar(), callTime: new Date().getTime() - (24 * 60 * 60 * 1000), incoming: true, missed: false, online: false },
+    { id: 2, name: 'Jane Smith', img: faker.image.avatar(), callTime: new Date().getTime() - (24 * 60 * 60 * 1000), incoming: false, missed: true, online: true },
+    { id: 3, name: 'Jane Smith', img: faker.image.avatar(), callTime: new Date().getTime() - (24 * 60 * 60 * 1000), incoming: true, missed: true, online: false },
+    { id: 4, name: 'Jane Smith', img: faker.image.avatar(), callTime: new Date().getTime() - (24 * 60 * 60 * 1000), incoming: false, missed: false, online: false },
+    { id: 5, name: 'Jane Smith', img: faker.image.avatar(), callTime: new Date().getTime() - (24 * 60 * 60 * 1000), incoming: true, missed: true, online: true },
+    { id: 6, name: 'Jane Smith', img: faker.image.avatar(), callTime: new Date().getTime() - (24 * 60 * 60 * 1000), incoming: true, missed: true, online: false },
+    { id: 7, name: 'Jane Smith', img: faker.image.avatar(), callTime: new Date().getTime() - (24 * 60 * 60 * 1000), incoming: false, missed: true, online: false },
+    { id: 8, name: 'Bob Johnson', img: faker.image.avatar(), callTime: new Date().getTime() - (5 * 24 * 60 * 60 * 1000), incoming: true, missed: false, online: true },
+
+
+]
+
+
 
 
 
@@ -349,4 +365,5 @@ export {
   Shared_links,
   Shared_documents,
   User_options,
+  Call_history,
 };
