@@ -39,6 +39,7 @@ export default function Router() {
         { path: "settings", element: <Settings /> },
         { path: "group", element: <Group /> },
         { path: "call-history", element: <CallHistory /> },
+        { path: "profile-setup", element: <ProfileSetup /> },
 
         { path: "404", element: <Page404 /> },
         { path: "*", element: <Navigate to="/404" replace /> },
@@ -70,6 +71,10 @@ const ResetPassword = Loadable(
 
 const ChangePassword = Loadable(
     lazy(() => import("../pages/auth/ChangePassword")),
+);
+
+const ProfileSetup = Loadable(
+    lazy(() => import("../pages/dashboard/ProfileSetup")),
 );
 
 const Group = Loadable(

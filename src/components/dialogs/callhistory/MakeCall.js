@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import TextField from '@mui/material/TextField';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
@@ -18,30 +17,17 @@ import {faker} from "@faker-js/faker";
 import {Call_history} from "../../../data";
 import SimpleBarReact from "simplebar-react";
 
-// Sample user data
-const users = [
-    { id: 1, name: 'John Doe', avatar: '/path/to/avatar1.jpg' },
-    { id: 2, name: 'Jane Smith', avatar: '/path/to/avatar2.jpg' },
-    { id: 3, name: 'Bob Johnson', avatar: '/path/to/avatar3.jpg' },
-    // Add more users as needed
-];
 
 const MakeCall = ({ open, onClose }) => {
-    const [searchTerm, setSearchTerm] = useState('');
-    const [filteredUsers, setFilteredUsers] = useState(users);
 
-    const handleSearch = (event) => {
-        const term = event.target.value.toLowerCase();
-        setSearchTerm(term);
-        setFilteredUsers(users.filter((user) => user.name.toLowerCase().includes(term)));
-    };
+
 
     const theme = useTheme();
 
     return (
-        <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
+        <Dialog open={open} onClose={onClose} maxWidth="xs" fullWidth>
             <DialogTitle>Make a Call</DialogTitle>
-            <Stack sx={{ width: "100%", p: 1 }}>
+            <Stack sx={{ width: "100%", px: 5, py: 1 }}>
                 <Search >
                     <SearchIconWrapper >
                         <MagnifyingGlass color={theme.palette.primary.main} />
@@ -53,7 +39,7 @@ const MakeCall = ({ open, onClose }) => {
                 <SimpleBarReact style={{ maxHeight: 400 }}>
                     <DialogContent>
                         <List>
-                            {filteredUsers.map((user) => (
+                            {Call_history.map((user) => (
                                 <ListItem key={user.id}>
                                     <ListItemAvatar>
                                         <Stack direction="row" spacing={2} alignItems="center" >
