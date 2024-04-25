@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Box, Button, Divider, IconButton, Stack, Typography} from "@mui/material";
 import {useTheme} from "@mui/material/styles";
-import {CircleDashed, MagnifyingGlass, Plus} from "phosphor-react";
+import {CircleDashed, MagnifyingGlass, Plus, UsersThree} from "phosphor-react";
 import SimpleBarReact from "simplebar-react";
 import {ChatList} from "../../data";
 import {ChatElement, Search, SearchIconWrapper, StyledInputBase} from "./Chats";
@@ -31,7 +31,7 @@ const Group = () => {
                             Groups
                         </Typography>
                         <IconButton >
-                            <CircleDashed color={theme.palette.primary.main} />
+                            <UsersThree color={theme.palette.primary.main} />
                         </IconButton>
                     </Stack>
                     <Stack sx={{ width: "100%" }}>

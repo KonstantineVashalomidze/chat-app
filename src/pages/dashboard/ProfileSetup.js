@@ -2,7 +2,6 @@ import {
     Avatar,
     Box,
     Button,
-    Divider,
     IconButton,
     Stack,
     TextField,
@@ -11,14 +10,10 @@ import {
 import React, { useState } from "react";
 import { useTheme } from "@mui/material/styles";
 import { faker } from "@faker-js/faker";
-import SimpleBarReact from "simplebar-react";
-import { toggleSideBar } from "../../redux/slices/app";
-import { X } from "phosphor-react";
-import { useDispatch } from "react-redux";
+import {UserCircleGear} from "phosphor-react";
 
 const ProfileSetup = () => {
     const theme = useTheme();
-    const dispatch = useDispatch();
     const [name, setName] = useState("");
     const [about, setAbout] = useState("");
     const [nameError, setNameError] = useState(false);
@@ -104,8 +99,8 @@ const ProfileSetup = () => {
                             spacing={3}
                         >
                             <Typography variant={"h5"}>Set Profile</Typography>
-                            <IconButton onClick={() => { dispatch(toggleSideBar()) }}>
-                                <X color={theme.palette.primary.main} />
+                            <IconButton >
+                                <UserCircleGear color={theme.palette.primary.main} />
                             </IconButton>
                         </Stack>
                     </Box>
@@ -190,7 +185,7 @@ const ProfileSetup = () => {
                                 variant="contained"
                                 color="primary"
                                 onClick={handleSave}
-                                sx={{ mt: 2 }}
+                                sx={{ width: "100%" }}
                             >
                                 Save
                             </Button>

@@ -7,16 +7,46 @@ import {Calendar, Chats, Gear, Phone, Users} from "phosphor-react";
 import {faker} from "@faker-js/faker";
 import useSettings from "../../hooks/useSettings";
 import AntSwitch from "../../components/AntSwitch";
+import {useNavigate} from "react-router-dom";
+
+
+const getPath = (index) => {
+    switch (index) {
+        case 0:
+            return "/app";
+        case 1:
+            return "/group";
+        case 2:
+            return "/call-history";
+        case 3:
+            return "/calendar";
+        case 4:
+            return "/settings";
+        case 5:
+            return "/profile-setup";
+        case 6:
+            return "/settings";
+        case 7:
+            return "/auth/signup"
+        default:
+            break;
+    }
+}
+
+
+
 
 const SideBar = () => {
     const theme = useTheme();
     const [selected, setSelected] = useState(0);
     const { onToggleMode } = useSettings();
-
+    const navigate = useNavigate();
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
+
+
     };
     const handleClose = () => {
         setAnchorEl(null);
@@ -44,10 +74,10 @@ const SideBar = () => {
                                                 width: "max-content",
                                             }}
                                         >
-                                            {el.index === 0 ? <Chats color={theme.palette.primary.main} /> : null}
-                                            {el.index === 1 ? <Users color={theme.palette.primary.main} /> : null}
-                                            {el.index === 2 ? <Phone color={theme.palette.primary.main} /> : null}
-                                            {el.index === 3 ? <Calendar color={theme.palette.primary.main} /> : null}
+                                            {el.index === 0 && <Chats color={theme.palette.primary.main} />}
+                                            {el.index === 1 && <Users color={theme.palette.primary.main} />}
+                                            {el.index === 2 && <Phone color={theme.palette.primary.main} />}
+                                            {el.index === 3 && <Calendar color={theme.palette.primary.main} />}
                                         </IconButton>
                                         <Box
                                             sx={{
@@ -65,6 +95,7 @@ const SideBar = () => {
                                 (
                                     <IconButton onClick={() => {
                                         setSelected(el.index);
+                                        navigate(getPath(el.index));
                                     }}
                                                 key={el.index}
                                                 sx={{ width: "max-content" }}>
@@ -101,6 +132,8 @@ const SideBar = () => {
                             (<IconButton
                                 onClick={() => {
                                     setSelected(4);
+                                    navigate(getPath(4));
+
                                 }}>
                                 <Gear />
                             </IconButton>)}
@@ -132,7 +165,7 @@ const SideBar = () => {
                         >
                             <Stack spacing={1} px={1}>
                                 {Profile_Menu.map((el) => (
-                                    <MenuItem key={el.title} onClick={handleClose}>
+                                    <MenuItem key={el.title} onClick={() => { handleClose(); navigate(getPath(el.index)); }}>
                                         <Stack sx={{width: 100}} direction={"row"} alignItems={"center"}
                                                justifyContent={"space-between"}>
                                         <span>
