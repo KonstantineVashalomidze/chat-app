@@ -6,6 +6,8 @@ const initialState = {
     isLoggedIn: false,
     token: "",
     isLoading: false,
+    email:"",
+    error: false
 }
 
 
@@ -13,6 +15,10 @@ const slice = createSlice({
     name: "auth",
     initialState: initialState,
     reducers: {
+        updateIsLoading(state, action) {
+            state.error = action.payload.error;
+            state.isLoading = action.payload.isLoading;
+        },
         logIn(state, action) {
             state.isLoggedIn = action.payload.isLoggedIn;
             state.token = action.payload.token;
@@ -20,6 +26,9 @@ const slice = createSlice({
         signOut(state, action) {
             state.isLoggedIn = false;
             state.token = "";
+        },
+        updateSignupEmail(state, action) {
+            state.email = action.payload.email;
         }
     }
 });
@@ -91,5 +100,53 @@ export function UpdatePassword(form) {
         });
     };
 };
+
+
+export function Signup(form) {
+    return async (dispatch, getState) => {
+        dispatch(slice.actions.updateIsLoading({isLoading: true, error: false}));
+        await axios.post("/auth/signup", {
+            ...form
+        }, {
+            headers: {
+                "Content-type": "application/json"
+            }
+        }).then((res) => {
+            console.log(res);
+            dispatch(slice.actions.updateSignupEmail({email: form.email}));
+            dispatch(slice.actions.updateIsLoading({isLoading: false, error: false}));
+        }).catch((err) => {
+            console.log(err);
+            dispatch(slice.actions.updateIsLoading({isLoading: false, error: true}));
+        }).finally(() => {
+            if (!getState().auth.error) {
+                window.location.href = "/auth/email-verification";
+            }
+        });
+    };
+};
+
+
+export function VerifyEmail(form) {
+    return async (dispatch, getState) => {
+        await axios.post("/auth/verify-otp", {
+            ...form
+        }, {
+            headers: {
+                "Content-type": "application/json"
+            }
+        }).then((res) => {
+            console.log(res);
+            dispatch(slice.actions.logIn({
+                isLoggedIn: true,
+                token: res.data.token,
+            }));
+        }).catch((err) => {
+            console.log(err);
+        });
+    };
+};
+
+
 
 

@@ -2,12 +2,16 @@ import React, { useState, useRef } from "react";
 import { Box, Button, Link, Stack, TextField, Typography } from "@mui/material";
 import Logo from "../../assets/Images/logo.ico";
 import { Link as RouterLink } from "react-router-dom";
+import {VerifyEmail} from "../../redux/slices/authReducer";
+import {dispatch} from "../../redux/store";
+import {useSelector} from "react-redux";
 
 const EmailVerification = () => {
     const [verificationCode, setVerificationCode] = useState(["", "", "", "", "", ""]);
     const [error, setError] = useState("");
     const [isVerified, setIsVerified] = useState(false);
     const inputRefs = useRef([]);
+    const {email} = useSelector((state) => state.auth);
 
     const handleInputChange = (index, value) => {
         if (value.length > 1 || !/^\d*$/.test(value)) return; // Prevent entering more than one digit or non-digit characters
@@ -46,19 +50,11 @@ const EmailVerification = () => {
             return;
         }
 
-        // Perform verification logic here
-        // Send the enteredCode to the server for validation
-        // Assuming the server responds with a success or error message
-
         try {
-            // Simulating verification process
-            if (enteredCode === "123456") {
-                setIsVerified(true);
-            } else {
-                setError("Invalid verification code. Please try again.");
-            }
+            console.log(email);
+            dispatch(VerifyEmail({email: email, otp: enteredCode}));
         } catch (err) {
-            setError("An error occurred during verification. Please try again later.");
+            console.log(err);
         }
     };
 

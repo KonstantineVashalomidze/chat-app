@@ -12,6 +12,8 @@ import {
 import Logo from "../../assets/Images/logo.ico";
 import { Link as RouterLink } from "react-router-dom";
 import SocialAuth from "./SocialAuth";
+import {Signup} from "../../redux/slices/authReducer";
+import {dispatch} from "../../redux/store";
 
 const PasswordField = ({ label, value, onChange, error, helperText, onFocus }) => {
     return (
@@ -44,18 +46,14 @@ const Registration = () => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState({});
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors({});  // Reset errors before validating the form
         const validationErrors = validateForm();
 
         if (Object.keys(validationErrors).length === 0) {
-            // Handle registration logic here
-            console.log("Name:", name);
-            console.log("Surname:", surname);
-            console.log("Email:", email);
-            console.log("Password:", password);
-            console.log("Confirm Password:", confirmPassword);
+            // Registration logic
+            dispatch(Signup({ firstName: name, lastName: surname, email: email, password: password }));
         } else {
             setErrors(validationErrors);
         }
