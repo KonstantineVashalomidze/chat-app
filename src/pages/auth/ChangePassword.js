@@ -3,7 +3,7 @@ import { LockSimple } from "phosphor-react";
 import {Box, Button, InputAdornment, Stack, TextField, Typography} from "@mui/material";
 import Logo from "../../assets/Images/logo.ico";
 import {useSearchParams} from "react-router-dom";
-import {UpdatePassword} from "../../redux/slices/authReducer";
+import {UpdatePassword} from "../../redux/slices/auth";
 import {dispatch} from "../../redux/store";
 
 

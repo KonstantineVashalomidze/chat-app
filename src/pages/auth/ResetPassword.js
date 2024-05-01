@@ -3,7 +3,7 @@ import { EnvelopeSimple } from "phosphor-react";
 import { Box, Button, InputAdornment, Link, Stack, TextField, Typography } from "@mui/material";
 import Logo from "../../assets/Images/logo.ico";
 import { Link as RouterLink } from "react-router-dom";
-import {ForgotPassword} from "../../redux/slices/authReducer";
+import {ForgotPassword} from "../../redux/slices/auth";
 import {dispatch} from "../../redux/store";
 
 const ResetPassword = () => {

@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { Box, Button, Link, Stack, TextField, Typography } from "@mui/material";
 import Logo from "../../assets/Images/logo.ico";
 import { Link as RouterLink } from "react-router-dom";
-import {VerifyEmail} from "../../redux/slices/authReducer";
+import {VerifyEmail} from "../../redux/slices/auth";
 import {dispatch} from "../../redux/store";
 import {useSelector} from "react-redux";
 

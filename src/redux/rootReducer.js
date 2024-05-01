@@ -1,7 +1,7 @@
 import {combineReducers} from "redux";
 import storage from "redux-persist/lib/storage";
 import appReducer from "./slices/app";
-import authReducer from "./slices/authReducer"
+import authReducer from "./slices/auth"
 
 const rootPersistConfig = {
     key: 'root',

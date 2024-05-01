@@ -5,7 +5,7 @@ import Logo from "../../assets/Images/logo.ico";
 import SocialAuth from "./SocialAuth";
 import { Link as RouterLink } from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {LoginUser} from "../../redux/slices/authReducer";
+import {LoginUser} from "../../redux/slices/auth";
 
 const Login = () => {
     const [email, setEmail] = useState("");

@@ -12,7 +12,7 @@ import {
 import Logo from "../../assets/Images/logo.ico";
 import { Link as RouterLink } from "react-router-dom";
 import SocialAuth from "./SocialAuth";
-import {Signup} from "../../redux/slices/authReducer";
+import {Signup} from "../../redux/slices/auth";
 import {dispatch} from "../../redux/store";
 
 const PasswordField = ({ label, value, onChange, error, helperText, onFocus }) => {
