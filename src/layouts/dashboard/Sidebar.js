@@ -8,6 +8,8 @@ import {faker} from "@faker-js/faker";
 import useSettings from "../../hooks/useSettings";
 import AntSwitch from "../../components/AntSwitch";
 import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {LogoutUser} from "../../redux/slices/authReducer";
 
 
 const getPath = (index) => {
@@ -27,7 +29,7 @@ const getPath = (index) => {
         case 6:
             return "/settings";
         case 7:
-            return "/auth/signup"
+            return "/auth/login"
         default:
             break;
     }
@@ -38,6 +40,7 @@ const getPath = (index) => {
 
 const SideBar = () => {
     const theme = useTheme();
+    const dispatch = useDispatch();
     const [selected, setSelected] = useState(0);
     const { onToggleMode } = useSettings();
     const navigate = useNavigate();
@@ -165,7 +168,7 @@ const SideBar = () => {
                         >
                             <Stack spacing={1} px={1}>
                                 {Profile_Menu.map((el) => (
-                                    <MenuItem key={el.title} onClick={() => { handleClose(); navigate(getPath(el.index)); }}>
+                                    <MenuItem key={el.title} onClick={() => { handleClose(); dispatch(LogoutUser()); navigate(getPath(el.index)); }}>
                                         <Stack sx={{width: 100}} direction={"row"} alignItems={"center"}
                                                justifyContent={"space-between"}>
                                         <span>

@@ -58,7 +58,7 @@ export const allLangs = [
 
 export const defaultLang = allLangs[0]; // English
 
-
+export const BASE_URL = "http://localhost:3001";
 
 // DEFAULT ROOT PATH
 export const DEFAULT_PATH = PATH_DASHBOARD.general.app; // as '/app'

@@ -3,13 +3,15 @@ import { EnvelopeSimple } from "phosphor-react";
 import { Box, Button, InputAdornment, Link, Stack, TextField, Typography } from "@mui/material";
 import Logo from "../../assets/Images/logo.ico";
 import { Link as RouterLink } from "react-router-dom";
+import {ForgotPassword} from "../../redux/slices/authReducer";
+import {dispatch} from "../../redux/store";
 
 const ResetPassword = () => {
     const [email, setEmail] = useState("");
     const [emailError, setEmailError] = useState("");
     const [emailSent, setEmailSent] = useState(false);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setEmailError("");
 
@@ -19,10 +21,14 @@ const ResetPassword = () => {
             return;
         }
 
-        // Simulating email sending process
-        setEmailSent(true);
-        // You can add your email sending logic here
-
+        // Email sending logic
+        try {
+            dispatch(ForgotPassword({email: email}));
+            // Simulating email sending process
+            setEmailSent(true);
+        } catch (err) {
+            console.log(err);
+        }
         // Reset the form after a successful submission
         setEmail("");
     };

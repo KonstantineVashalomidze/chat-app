@@ -4,12 +4,15 @@ import { Box, Button, InputAdornment, Link, Stack, TextField, Typography } from 
 import Logo from "../../assets/Images/logo.ico";
 import SocialAuth from "./SocialAuth";
 import { Link as RouterLink } from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {LoginUser} from "../../redux/slices/authReducer";
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [emailError, setEmailError] = useState("");
     const [passwordError, setPasswordError] = useState("");
+    const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -28,9 +31,7 @@ const Login = () => {
 
         // If both email and password are provided, proceed with login logic
         if (email && password) {
-            console.log("Email:", email);
-            console.log("Password:", password);
-            // Add your login logic here
+            dispatch(LoginUser({email: email, password: password}));
         }
     };
 

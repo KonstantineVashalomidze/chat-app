@@ -27,6 +27,7 @@ export default function Router() {
         { element: <Signup />, path: "signup" },
         { element: <ResetPassword />, path: "reset-password" },
         { element: <ChangePassword />, path: "change-password" },
+        { element: <EmailVerification />, path: "email-verification" },
 
       ]
     },
@@ -84,6 +85,9 @@ const Group = Loadable(
 
 const CallHistory = Loadable(
     lazy(() => import("../pages/dashboard/CallHistory")),
+);
+const EmailVerification = Loadable(
+    lazy(() => import("../pages/auth/EmailVerification")),
 );
 
 

@@ -4,14 +4,14 @@ import {Stack} from "@mui/material";
 
 
 import Sidebar from "./Sidebar";
-
-const isAuthenticated = true;
-
+import {useSelector} from "react-redux";
 
 
 const DashboardLayout = () => {
 
-    if (!isAuthenticated) {
+    const {isLoggedIn} = useSelector((state) => state.auth);
+
+    if (!isLoggedIn) {
         return <Navigate to={"auth/login"} />;
     }
 
