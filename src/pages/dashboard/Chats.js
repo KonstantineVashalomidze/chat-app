@@ -1,11 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
 import { Avatar, Badge, Box, Button, Divider, IconButton, InputBase, Stack, Typography } from "@mui/material";
-import { ArchiveBox, CircleDashed, MagnifyingGlass } from "phosphor-react";
+import {ArchiveBox, MagnifyingGlass, UserPlus} from "phosphor-react";
 import { alpha, styled, useTheme } from "@mui/material/styles";
 import { faker } from "@faker-js/faker";
 import { ChatList } from "../../data";
 import SimpleBarReact from "simplebar-react";
 import "simplebar-react/dist/simplebar.min.css";
+import FriendRequests from "../../components/dialogs/chats/FriendRequests";
 
 export const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
@@ -114,6 +115,11 @@ const Chats = () => {
         ? "#fff"
         : theme.palette.background.default;
 
+    const [showFriendRequestsDialog, setShowFriendRequestsDialog] = useState(false);
+    const handleHideFriendsRequestsDialog = () => {
+        setShowFriendRequestsDialog(false);
+    }
+
     return (
         <>
             <Box
@@ -123,8 +129,10 @@ const Chats = () => {
                         <Typography p={1.5} variant={"h5"}>
                             Conversations
                         </Typography>
-                        <IconButton >
-                            <CircleDashed color={theme.palette.primary.main} />
+                        <IconButton onClick={() => {
+                            setShowFriendRequestsDialog(true);
+                        }}>
+                            <UserPlus color={theme.palette.primary.main} />
                         </IconButton>
                     </Stack>
                     <Stack sx={{ width: "100%" }}>
@@ -164,6 +172,7 @@ const Chats = () => {
                     </Stack>
                 </Stack>
             </Box>
+            {showFriendRequestsDialog && <FriendRequests open={showFriendRequestsDialog} onClose={handleHideFriendsRequestsDialog}/>}
         </>
     );
 };
