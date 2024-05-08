@@ -7,6 +7,8 @@ import { ChatList } from "../../data";
 import SimpleBarReact from "simplebar-react";
 import "simplebar-react/dist/simplebar.min.css";
 import FriendRequests from "../../components/dialogs/chats/FriendRequests";
+import {useDispatch, useSelector} from "react-redux";
+import {SelectConversationElement} from "../../redux/slices/app";
 
 export const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
@@ -36,24 +38,30 @@ export const StyledBadge = styled(Badge)(({ theme }) => ({
         },
     },
 }));
-export const ChatElement = ({ id, name, img, msg, time, unread, online, isSelected, handleSelection }) => {
+export const ChatElement = ({ id, name, img, msg, time, unread, online }) => {
     const theme = useTheme();
+    const dispatch = useDispatch();
+    const {roomId} = useSelector((state) => state.app);
+
 
     return (
         <Box
+            onClick={() => {
+                dispatch(SelectConversationElement({roomId: (roomId === id ? null : id)}));
+            } } // Attach click event handler
             sx={{
                 width: "100%",
                 borderRadius: 1,
                 backgroundColor: theme.palette.mode === "light" ? "#fff" : theme.palette.background.default,
                 cursor: "pointer",
-                ...(isSelected && {
+                ...((id === roomId) && {
                     backgroundColor: theme.palette.action.selected,
                     boxShadow: `0 0 0 2px ${theme.palette.primary.main} inset`,
                 }),
             }}
             p={2}
-            onClick={handleSelection} // Attach click event handler
         >
+
             <Stack direction="row" alignItems="center" justifyContent="space-between">
                 <Stack direction="row" spacing={2} alignItems="center" >
                     {online ? (
@@ -126,20 +134,15 @@ const Chats = () => {
     const theme = useTheme();
     const backgroundColor = theme.palette.mode === "light" ? "#fff" : theme.palette.background.default;
     const [showFriendRequestsDialog, setShowFriendRequestsDialog] = useState(false);
-    const [selectedChatId, setSelectedChatId] = useState(null); // New state to store the selected chat element's ID
 
     const handleHideFriendsRequestsDialog = () => {
         setShowFriendRequestsDialog(false);
     };
 
-    const handleChatElementSelection = (id) => {
-        setSelectedChatId(id === selectedChatId ? null : id); // Toggle selection or deselect if the same element is clicked
-    };
-
     return (
         <>
             <Box
-                sx={{ position: "relative", width: 320, backgroundColor: theme.palette.mode === "light" ? "#F8FAFF" : theme.palette.background.paper, boxShadow: '0px 0px 2px rgba(0, 0, 0, 0.25)' }}>
+                sx={{ width: 320, height: "100vh", backgroundColor: theme.palette.mode === "light" ? "#F8FAFF" : theme.palette.background.paper, boxShadow: '0px 0px 2px rgba(0, 0, 0, 0.25)' }}>
                 <Stack p={1} spacing={2} sx={{ height: "100vh" }}>
                     <Stack direction={"row"} alignItems={"center"} justifyContent={"space-between"} sx={{boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)", backgroundColor: backgroundColor }}>
                         <Typography p={1.5} variant={"h5"}>
@@ -173,7 +176,7 @@ const Chats = () => {
                                     Pinned
                                 </Typography>
                                 {ChatList.filter((el) => el.pinned).map((el) => {
-                                    return <ChatElement {...el} isSelected={el.id === selectedChatId} handleSelection={() => handleChatElementSelection(el.id)} />;
+                                    return <ChatElement {...el} />;
                                 })}
                             </Stack>
                             <Stack spacing={2.4}>
@@ -181,7 +184,7 @@ const Chats = () => {
                                     All Chats
                                 </Typography>
                                 {ChatList.filter((el) => !el.pinned).map((el) => {
-                                    return <ChatElement {...el} isSelected={el.id === selectedChatId} handleSelection={() => handleChatElementSelection(el.id)} />;
+                                    return <ChatElement {...el} />;
                                 })}
                             </Stack>
                         </SimpleBarReact>

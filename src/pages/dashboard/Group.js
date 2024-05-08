@@ -1,18 +1,19 @@
 import React, {useState} from "react";
 import {Box, Button, Divider, IconButton, Stack, Typography} from "@mui/material";
 import {useTheme} from "@mui/material/styles";
-import {CircleDashed, MagnifyingGlass, Plus, UsersThree} from "phosphor-react";
+import { MagnifyingGlass, Plus, UsersThree} from "phosphor-react";
 import SimpleBarReact from "simplebar-react";
 import {ChatList} from "../../data";
 import {ChatElement, Search, SearchIconWrapper, StyledInputBase} from "./Chats";
 import CreateGroup from "../../components/dialogs/group/CreateGroup";
+import StartConversation from "../../assets/Illustration/StartConversation";
 
 
 
 const Group = () => {
 
-    const theme = useTheme(false);
-    const [showCreateGroupDialog, setShowCreateGroupDialog] = useState();
+    const theme = useTheme();
+    const [showCreateGroupDialog, setShowCreateGroupDialog] = useState(false);
     const backgroundColor = theme.palette.mode === "light"
         ? "#fff"
         : theme.palette.background.default;
@@ -23,8 +24,11 @@ const Group = () => {
 
     return (
         <>
+            <Box sx={{ height: "100vh", width: "calc(100vw - 420px)" }}>
+                <StartConversation />
+            </Box>
             <Box
-                sx={{ position: "relative", width: 320, backgroundColor: theme.palette.mode === "light" ? "#F8FAFF" : theme.palette.background.paper, boxShadow: '0px 0px 2px rgba(0, 0, 0, 0.25)' }}>
+                sx={{  width: 320, backgroundColor: theme.palette.mode === "light" ? "#F8FAFF" : theme.palette.background.paper, boxShadow: '0px 0px 2px rgba(0, 0, 0, 0.25)' }}>
                 <Stack p={1} spacing={2} sx={{ height: "100vh" }}>
                     <Stack direction={"row"} alignItems={"center"} justifyContent={"space-between"} sx={{boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)", backgroundColor: backgroundColor }}>
                         <Typography p={1.5} variant={"h5"}>

@@ -9,11 +9,11 @@ import TopMessages from "../../components/sharedMessages/TopMessages";
 
 
 const GeneralApp = () => {
-    const {sidebar} = useSelector((store) => store.app);
+  const {sidebar} = useSelector((store) => store.app);
 
   return (
     <>
-        <Stack direction={"row"} sx={{width: "100%", boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)"}} >
+        <Stack direction={"row"} sx={{boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)"}} >
             {sidebar.open && (() => {
                 switch (sidebar.type) {
                     case "CONTACT":
@@ -26,7 +26,7 @@ const GeneralApp = () => {
                         break;
                 }
             }) ()}
-            <Box sx={{height: "100%", width: sidebar.open ? "calc(100vw - 735px)" : "calc(100vw - 415px)"}}>
+            <Box sx={{height: "100%", width: sidebar.open ? "calc(100vw - 740px)" : "calc(100vw - 420px)"}}>
                 <Conversation />
             </Box>
             <Chats />
