@@ -19,7 +19,6 @@ import { NAVBAR, defaultSettings } from "../../../config";
 import Iconify from "../../Iconify";
 //
 import ToggleButton from "./ToggleButton";
-import SettingDirection from "./SettingDirection";
 import SettingFullscreen from "./SettingFullscreen";
 import SettingColorPresets from "./SettingColorPresets";
 
@@ -134,10 +133,6 @@ export default function SettingsDrawer() {
               <Divider sx={{ borderStyle: "dashed" }} />
 
               <Stack spacing={3} sx={{ p: 3, flexGrow: 1, overflow: "auto", height: "100%" }}>
-                <Stack spacing={1.5}>
-                  <Typography variant="subtitle2">Direction</Typography>
-                  <SettingDirection />
-                </Stack>
 
                 <Stack spacing={1.5}>
                   <Typography variant="subtitle2">Presets</Typography>
