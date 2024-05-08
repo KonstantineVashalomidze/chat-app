@@ -15,6 +15,7 @@ import SimpleBarReact from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import {useDispatch, useSelector} from "react-redux";
 import {FetchFriendRequests, FetchFriends, FetchUsers} from "../../../redux/slices/app";
+import {Minus, Plus} from "phosphor-react";
 
 
 const FriendRequests = ({ open, onClose }) => {
@@ -45,7 +46,15 @@ const FriendRequests = ({ open, onClose }) => {
                         <ListItemAvatar>
                             <Avatar src={user.avatar} />
                         </ListItemAvatar>
-                        <ListItemText primary={user.firstName + " " + user.lastName} />
+                        <ListItemText primary={`${user.firstName} ${user.lastName}`} />
+                        {currentTab === 0 && <Plus />}
+                        {currentTab === 1 && <Minus />}
+                        {currentTab === 2 && (
+                            <>
+                                <Plus />
+                                <Minus />
+                            </>
+                        )}
                     </ListItem>
                 ))}
             </List>

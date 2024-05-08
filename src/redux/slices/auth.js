@@ -52,6 +52,7 @@ export function LoginUser(form) { // Email and Password
                 token: res.data.token,
             }));
             dispatch(showSnackbar({severity: res.data.status, message: res.data.message}));
+            window.localStorage.setItem("userId", res.data.userId);
         }).catch(function (err) {
             console.log(err);
             // Handle different types of errors
@@ -74,6 +75,7 @@ export function LoginUser(form) { // Email and Password
 
 export function LogoutUser() {
     return (dispatch, getState) => {
+        window.localStorage.removeItem("userId");
         dispatch(slice.actions.signOut());
     };
 };
@@ -196,6 +198,7 @@ export function VerifyEmail(form) {
                 token: res.data.token,
             }));
             dispatch(showSnackbar({severity: res.data.status, message: res.data.message}));
+            window.localStorage.setItem("userId", res.data.userId);
         }).catch((err) => {
             console.log(err);
             // Handle different types of errors

@@ -221,7 +221,7 @@ const Contact = () => {
                                 ? <BellSimpleSlash color={theme.palette.primary.main} weight="fill" /> : <BellSimple color={theme.palette.primary.main} weight="fill" />
                             }
                             <Typography variant={"body2"} >
-                                Mute
+                                {muted ? "Unmute" : "Mute"}
                             </Typography>
                         </Stack>
                         <AntSwitch onChange={() =>

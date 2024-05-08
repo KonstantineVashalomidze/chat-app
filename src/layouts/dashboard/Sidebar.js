@@ -168,7 +168,7 @@ const SideBar = () => {
                         >
                             <Stack spacing={1} px={1}>
                                 {Profile_Menu.map((el) => (
-                                    <MenuItem key={el.title} onClick={() => { handleClose(); dispatch(LogoutUser()); navigate(getPath(el.index)); }}>
+                                    <MenuItem key={el.title} onClick={() => { handleClose(); navigate(getPath(el.index)); if (el.index === 7) dispatch(LogoutUser()); }}>
                                         <Stack sx={{width: 100}} direction={"row"} alignItems={"center"}
                                                justifyContent={"space-between"}>
                                         <span>
