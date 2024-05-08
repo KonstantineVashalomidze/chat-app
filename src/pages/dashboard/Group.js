@@ -6,7 +6,7 @@ import SimpleBarReact from "simplebar-react";
 import {ChatList} from "../../data";
 import {ChatElement, Search, SearchIconWrapper, StyledInputBase} from "./Chats";
 import CreateGroup from "../../components/dialogs/group/CreateGroup";
-import StartConversation from "../../assets/Illustration/StartConversation";
+import StartConversation from "../../assets/Illustration/SelectConversation";
 
 
 

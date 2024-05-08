@@ -3,7 +3,7 @@ import { memo } from "react";
 import { useTheme } from "@mui/material/styles";
 import { Box } from "@mui/material";
 
-function StartConversation({ ...other }) {
+function SelectConversation({ ...other }) {
   const theme = useTheme();
   const PRIMARY_MAIN = theme.palette.primary.main;
 
@@ -205,4 +205,4 @@ function StartConversation({ ...other }) {
   );
 }
 
-export default memo(StartConversation);
+export default memo(SelectConversation);

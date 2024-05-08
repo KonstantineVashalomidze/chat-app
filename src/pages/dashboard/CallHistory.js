@@ -6,6 +6,7 @@ import SimpleBarReact from "simplebar-react";
 import {useTheme} from "@mui/material/styles";
 import {Call_history} from "../../data";
 import MakeCall from "../../components/dialogs/callhistory/MakeCall";
+import SelectCall from "../../assets/Illustration/SelectCall";
 
 
 
@@ -112,6 +113,9 @@ const CallHistory = () => {
 
     return (
         <>
+            <Box sx={{ height: "100vh", width: "calc(100vw - 420px)" }}>
+                <SelectCall />
+            </Box>
             <Box
                 sx={{ position: "relative", width: 320, backgroundColor: theme.palette.mode === "light" ? "#F8FAFF" : theme.palette.background.paper, boxShadow: '0px 0px 2px rgba(0, 0, 0, 0.25)' }}>
                 <Stack p={1} spacing={2} sx={{ height: "100vh" }}>
