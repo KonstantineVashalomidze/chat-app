@@ -7,6 +7,9 @@ import {ChatList} from "../../data";
 import {ChatElement, Search, SearchIconWrapper, StyledInputBase} from "./Chats";
 import CreateGroup from "../../components/dialogs/group/CreateGroup";
 import SelectGroup from "../../assets/Illustration/SelectGroup";
+import SelectConversation from "../../assets/Illustration/SelectConversation";
+import Conversation from "../../components/conversation";
+import {useSelector} from "react-redux";
 
 
 
@@ -17,6 +20,8 @@ const Group = () => {
     const backgroundColor = theme.palette.mode === "light"
         ? "#fff"
         : theme.palette.background.default;
+    const {roomId} = useSelector((store) => store.app);
+
 
     const handleCloseCreateGroupDialog = () => {
         setShowCreateGroupDialog(false);
@@ -25,7 +30,7 @@ const Group = () => {
     return (
         <>
             <Box sx={{ height: "100vh", width: "calc(100vw - 420px)" }}>
-                <SelectGroup />
+                {roomId === null ? <SelectGroup /> : <Conversation isGroup={true} />}
             </Box>
             <Box
                 sx={{  width: 320, backgroundColor: theme.palette.mode === "light" ? "#F8FAFF" : theme.palette.background.paper, boxShadow: '0px 0px 2px rgba(0, 0, 0, 0.25)' }}>

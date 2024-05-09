@@ -28,7 +28,7 @@ const GeneralApp = () => {
                 }
             }) ()}
             <Box sx={{height: "100vh", width: (sidebar.open && roomId !== null) ? "calc(100vw - 740px)" : "calc(100vw - 420px)" }}>
-                {roomId === null ? <SelectConversation /> : <Conversation />}
+                {roomId === null ? <SelectConversation /> : <Conversation isGroup={false} />}
             </Box>
             <Chats />
         </Stack>

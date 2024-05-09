@@ -153,7 +153,7 @@ const SideBar = () => {
                         }}>
                             <Avatar id="basic-button" aria-controls={open ? "basic-menu" : undefined} aria-haspopup="true"
                                     aria-expanded={open ? "true" : undefined} onClick={handleClick}
-                                    src={faker.image.avatar()} sx={{boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)"}}/>
+                                    src={faker.image.avatar()} sx={{cursor: "pointer", boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)"}}/>
                         </div>
                         <Menu
                             id="basic-menu"

@@ -40,15 +40,15 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 
 
-const Header = () => {
+const Header = ({isGroup}) => {
     const theme = useTheme();
     const dispatch = useDispatch();
 
     return (
         <Stack alignItems={"center"} direction={"row"} justifyContent={"space-between"} sx={{width: "100%", height: "100%"}}>
-            <Stack direction={"row"} spacing={2} onClick={() => {dispatch(toggleSideBar())} } >
+            <Stack direction={"row"} spacing={2} onClick={() => {if (!isGroup) dispatch(toggleSideBar()); } } >
                 <StyledBadge overlap={"circular"} anchorOrigin={{vertical: "bottom", horizontal: "right"}} variant={"dot"}>
-                    <Avatar alt={faker.name.fullName()} src={faker.image.avatar()} sx={{boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)"}} />
+                    <Avatar alt={faker.name.fullName()} src={faker.image.avatar()} sx={{boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)", cursor: "pointer"}} />
                 </StyledBadge>
                 <Stack spacing={0.2} >
                     <Typography variant={"subtitle2"}>

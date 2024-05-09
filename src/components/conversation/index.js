@@ -6,7 +6,7 @@ import Message from "./Message";
 import SimpleBarReact from "simplebar-react";
 
 
-const Conversation = () => {
+const Conversation = ({isGroup}) => {
     const theme = useTheme();
 
 
@@ -24,7 +24,7 @@ const Conversation = () => {
         <Stack p={1} height={"100%"} maxHeight={"100vh"} width={"100%"} sx={{ backgroundColor: conversationBackgroundColor }}>
             <Box p={2} sx={{width: "100%", backgroundColor: backgroundColor, boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)", }}>
 
-                <Header />
+                <Header isGroup={isGroup} />
 
             </Box>
             <Box sx={{width: "100%", flexGrow: 1, overflow: "hidden", height: "100%"}} >
