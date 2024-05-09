@@ -6,7 +6,7 @@ import SimpleBarReact from "simplebar-react";
 import {ChatList} from "../../data";
 import {ChatElement, Search, SearchIconWrapper, StyledInputBase} from "./Chats";
 import CreateGroup from "../../components/dialogs/group/CreateGroup";
-import StartConversation from "../../assets/Illustration/SelectConversation";
+import SelectGroup from "../../assets/Illustration/SelectGroup";
 
 
 
@@ -25,7 +25,7 @@ const Group = () => {
     return (
         <>
             <Box sx={{ height: "100vh", width: "calc(100vw - 420px)" }}>
-                <StartConversation />
+                <SelectGroup />
             </Box>
             <Box
                 sx={{  width: 320, backgroundColor: theme.palette.mode === "light" ? "#F8FAFF" : theme.palette.background.paper, boxShadow: '0px 0px 2px rgba(0, 0, 0, 0.25)' }}>

@@ -56,7 +56,7 @@ const SideBar = () => {
     };
 
     return (
-        <Box p={2} sx={{backgroundColor: theme.palette.mode === "light" ? "#F8FAFF" : theme.palette.background.paper, boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)", height: "100vh", width: 100}}>
+        <Box p={2} sx={{ zIndex: 1, backgroundColor: theme.palette.mode === "light" ? "#F0F4FA" : theme.palette.background.paper, boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)", height: "100vh", width: 100}}>
             <Stack direction={"column"} alignItems={"center"} justifyContent={"space-between"} sx={{height: "100%"}} spacing={3}>
                 <Stack alignItems={"center"} spacing={4}>
                     <Box>

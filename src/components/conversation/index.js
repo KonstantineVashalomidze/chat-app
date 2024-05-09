@@ -21,7 +21,7 @@ const Conversation = () => {
         : theme.palette.background.paper;
 
     return (
-        <Stack p={1} height={"100%"} maxHeight={"100vh"} width={"100%"} sx={{ backgroundColor: conversationBackgroundColor, boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)", }}>
+        <Stack p={1} height={"100%"} maxHeight={"100vh"} width={"100%"} sx={{ backgroundColor: conversationBackgroundColor }}>
             <Box p={2} sx={{width: "100%", backgroundColor: backgroundColor, boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)", }}>
 
                 <Header />

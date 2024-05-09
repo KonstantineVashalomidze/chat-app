@@ -14,7 +14,6 @@ const initialState = {
     users: [],
     friends: [],
     friendRequests: [],
-    chatType: null,
     roomId: null,
 }
 
@@ -49,7 +48,6 @@ const slice = createSlice({
             state.friendRequests = action.payload.friendRequests;
         },
         selectConversationElement(state, action) {
-            state.chatType = "oneToOne";
             state.roomId = action.payload.roomId;
         }
 

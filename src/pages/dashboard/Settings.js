@@ -1,10 +1,11 @@
 import React, {useState} from "react";
 import {Box, IconButton, ListItem, ListItemIcon, ListItemText, Stack, Typography} from "@mui/material";
 import {updateSidebarType} from "../../redux/slices/app";
-import {Lock, Image, Bell, CaretLeft, Info, Key, Keyboard, Note} from "phosphor-react";
+import {Lock, Image, Bell, Info, Key, Keyboard, Note, CaretRight} from "phosphor-react";
 import {useTheme} from "@mui/material/styles";
 import {useDispatch} from "react-redux";
 import KeyboardShortcuts from "../../components/dialogs/settings/KeyboardShortcuts";
+import SelectSetting from "../../assets/Illustration/SelectSetting";
 
 
 
@@ -75,31 +76,36 @@ const Settings = () => {
     ];
 
     return (
-        <Stack alignItems={"center"} sx={{boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)", width: 320, height: "100vh", background: theme.palette.mode === "light" ? "#F8FAFF" : theme.palette.background.paper}}>
-            <Stack p={1} sx={{width: "100%"}} >
-                <Box sx={{boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)", width: "100%", backgroundColor: backgroundColor }} >
-                    <Stack sx={{height: "100%", p: 1}} direction={"row"} alignItems={"center"} justifyContent={"space-between"} spacing={3}>
-                        <IconButton onClick={() => {dispatch(updateSidebarType("CONTACT"))} }>
-                            <CaretLeft color={theme.palette.primary.main} />
-                        </IconButton>
-                        <Typography variant={"h5"} >
-                            Settings
-                        </Typography>
-                    </Stack>
-                </Box>
+        <>
+            <Box sx={{ height: "100vh", width: "calc(100vw - 420px)" }}>
+                <SelectSetting />
+            </Box>
+            <Stack alignItems={"center"} sx={{boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)", width: 320, height: "100vh", background: theme.palette.mode === "light" ? "#F8FAFF" : theme.palette.background.paper}}>
+                <Stack p={1} sx={{width: "100%"}} >
+                    <Box sx={{boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)", width: "100%", backgroundColor: backgroundColor }} >
+                        <Stack sx={{height: "100%", p: 1}} direction={"row"} alignItems={"center"} justifyContent={"space-between"} spacing={3}>
+                            <Typography variant={"h5"} >
+                                Settings
+                            </Typography>
+                            <IconButton onClick={() => {dispatch(updateSidebarType("CONTACT"))} }>
+                                <CaretRight color={theme.palette.primary.main} />
+                            </IconButton>
+                        </Stack>
+                    </Box>
+                </Stack>
+                <Stack p={2} sx={{width: "100%"}}>
+                    {list.map(item => (
+                        <ListItem key={item.key} button onClick={item.onclick} selected={selectedItem === item.key} sx={{ paddingY: 2 }} >
+                            <ListItemIcon>
+                                {item.icon}
+                            </ListItemIcon>
+                            <ListItemText primary={item.title} />
+                        </ListItem>
+                    ))}
+                </Stack>
+                <KeyboardShortcuts open={showShortcuts} handleClose={ () => {handleHideShortcuts()} } />
             </Stack>
-            <Stack p={2} sx={{width: "100%"}}>
-                {list.map(item => (
-                    <ListItem key={item.key} button onClick={item.onclick} selected={selectedItem === item.key} sx={{ paddingY: 2 }} >
-                        <ListItemIcon>
-                            {item.icon}
-                        </ListItemIcon>
-                        <ListItemText primary={item.title} />
-                    </ListItem>
-                ))}
-            </Stack>
-            <KeyboardShortcuts open={showShortcuts} handleClose={ () => {handleHideShortcuts()} } />
-        </Stack>
+        </>
     );
 };
 
