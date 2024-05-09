@@ -15,7 +15,7 @@ const GeneralApp = () => {
   return (
     <>
         <Stack direction={"row"} >
-            {sidebar.open && (() => {
+            {(sidebar.open && roomId !== null) && (() => {
                 switch (sidebar.type) {
                     case "CONTACT":
                         return <Contact />;
@@ -27,7 +27,7 @@ const GeneralApp = () => {
                         break;
                 }
             }) ()}
-            <Box sx={{height: "100vh", width: sidebar.open ? "calc(100vw - 740px)" : "calc(100vw - 420px)" }}>
+            <Box sx={{height: "100vh", width: (sidebar.open && roomId !== null) ? "calc(100vw - 740px)" : "calc(100vw - 420px)" }}>
                 {roomId === null ? <SelectConversation /> : <Conversation />}
             </Box>
             <Chats />
