@@ -15,12 +15,15 @@ import SimpleBarReact from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import {useDispatch, useSelector} from "react-redux";
 import {FetchFriendRequests, FetchFriends, FetchUsers} from "../../../redux/slices/app";
-import {Minus, Plus} from "phosphor-react";
+import {ChatDots, Minus, Plus} from "phosphor-react";
+import {IconButton} from "@mui/material";
+import {socket} from "../../../sockets/socket";
 
 
 const FriendRequests = ({ open, onClose }) => {
     const [currentTab, setCurrentTab] = useState(0);
     const dispatch = useDispatch();
+    const {userId} = useSelector((store) => store.auth);
     useEffect(() => {
         dispatch(FetchUsers());
         dispatch(FetchFriends());
@@ -47,8 +50,8 @@ const FriendRequests = ({ open, onClose }) => {
                             <Avatar src={user.avatar} />
                         </ListItemAvatar>
                         <ListItemText primary={`${user.firstName} ${user.lastName}`} />
-                        {currentTab === 0 && <Plus />}
-                        {currentTab === 1 && <Minus />}
+                        {currentTab === 0 && <IconButton><Plus /></IconButton>}
+                        {currentTab === 1 && <IconButton onClick={() => { socket.emit("startConversation", {to: user._id, from: userId }) }} ><ChatDots /></IconButton>}
                         {currentTab === 2 && (
                             <>
                                 <Plus />

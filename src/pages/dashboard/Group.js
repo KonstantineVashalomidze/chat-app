@@ -7,7 +7,6 @@ import {ChatList} from "../../data";
 import {ChatElement, Search, SearchIconWrapper, StyledInputBase} from "./Chats";
 import CreateGroup from "../../components/dialogs/group/CreateGroup";
 import SelectGroup from "../../assets/Illustration/SelectGroup";
-import SelectConversation from "../../assets/Illustration/SelectConversation";
 import Conversation from "../../components/conversation";
 import {useSelector} from "react-redux";
 

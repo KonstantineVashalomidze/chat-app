@@ -1,14 +1,14 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { Avatar, Badge, Box, Button, Divider, IconButton, InputBase, Stack, Typography } from "@mui/material";
 import {ArchiveBox, MagnifyingGlass, UserPlus} from "phosphor-react";
 import { alpha, styled, useTheme } from "@mui/material/styles";
 import { faker } from "@faker-js/faker";
-import { ChatList } from "../../data";
 import SimpleBarReact from "simplebar-react";
 import "simplebar-react/dist/simplebar.min.css";
 import FriendRequests from "../../components/dialogs/chats/FriendRequests";
 import {useDispatch, useSelector} from "react-redux";
 import {SelectConversationElement} from "../../redux/slices/app";
+import {socket} from "../../sockets/socket";
 
 export const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
@@ -134,7 +134,17 @@ const Chats = () => {
     const theme = useTheme();
     const backgroundColor = theme.palette.mode === "light" ? "#fff" : theme.palette.background.default;
     const [showFriendRequestsDialog, setShowFriendRequestsDialog] = useState(false);
+    const {userId} = useSelector((store) => store.auth);
+    const {conversations} = useSelector((state) => state.conversation.individualChat);
 
+    useEffect(() => {
+        socket.emit("getDirectConversation", {userId}, (data) => {
+
+        });
+    }, [userId]);
+
+
+    console.log(conversations)
     const handleHideFriendsRequestsDialog = () => {
         setShowFriendRequestsDialog(false);
     };
@@ -175,7 +185,7 @@ const Chats = () => {
                                 <Typography variant={"subtitle2"} sx={{ color: "#676767" }}>
                                     Pinned
                                 </Typography>
-                                {ChatList.filter((el) => el.pinned).map((el) => {
+                                {conversations.filter((el) => el.pinned).map((el) => {
                                     return <ChatElement {...el} />;
                                 })}
                             </Stack>
@@ -183,7 +193,7 @@ const Chats = () => {
                                 <Typography variant={"subtitle2"} sx={{ color: "#676767" }} paddingTop={2}>
                                     All Chats
                                 </Typography>
-                                {ChatList.filter((el) => !el.pinned).map((el) => {
+                                {conversations.filter((el) => !el.pinned).map((el) => {
                                     return <ChatElement {...el} />;
                                 })}
                             </Stack>
