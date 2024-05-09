@@ -9,6 +9,7 @@ import FriendRequests from "../../components/dialogs/chats/FriendRequests";
 import {useDispatch, useSelector} from "react-redux";
 import {SelectConversationElement} from "../../redux/slices/app";
 import {socket} from "../../sockets/socket";
+import {FetchIndividualConversation} from "../../redux/slices/conversation";
 
 export const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
@@ -133,18 +134,18 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const Chats = () => {
     const theme = useTheme();
     const backgroundColor = theme.palette.mode === "light" ? "#fff" : theme.palette.background.default;
+    const dispatch = useDispatch();
     const [showFriendRequestsDialog, setShowFriendRequestsDialog] = useState(false);
     const {userId} = useSelector((store) => store.auth);
     const {conversations} = useSelector((state) => state.conversation.individualChat);
 
     useEffect(() => {
         socket.emit("getDirectConversation", {userId}, (data) => {
-
+            dispatch(FetchIndividualConversation(data));
         });
     }, [userId]);
 
 
-    console.log(conversations)
     const handleHideFriendsRequestsDialog = () => {
         setShowFriendRequestsDialog(false);
     };

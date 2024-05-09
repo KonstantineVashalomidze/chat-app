@@ -7,13 +7,15 @@ import Sidebar from "./Sidebar";
 import {useDispatch, useSelector} from "react-redux";
 import {connectSocket, socket} from "../../sockets/socket";
 import {showSnackbar} from "../../redux/slices/app";
+import SelectConversation from "../../assets/Illustration/SelectConversation";
+import {AddIndividualConversation, UpdateIndividualConversation} from "../../redux/slices/conversation";
 
 
 const DashboardLayout = () => {
     const dispatch = useDispatch();
 
     const {isLoggedIn} = useSelector((state) => state.auth);
-
+    const {conversations} = useSelector((state) => state.conversation.individualChat);
     const userId = window.localStorage.getItem("userId");
 
     useEffect(() => {
@@ -55,11 +57,23 @@ const DashboardLayout = () => {
             dispatch(showSnackbar({ severity: "success", message: data.message }));
         });
 
+        socket.on("startChat", (data) => {
+            console.log(data);
+            const conversation = conversations.find((e) => e.id === data._id);
+            if (conversation) {
+                dispatch(UpdateIndividualConversation({conversation: data}));
+            } else {
+                dispatch(AddIndividualConversation({conversation: data}));
+            }
+            dispatch(SelectConversation({roomId: data._id}));
+        });
+
         // Cleanup function to remove the event listeners when the component unmounts
         return () => {
-            socket.off("newFriendRequest");
-            socket.off("friendRequestAccepted");
-            socket.off("friendRequestSent");
+            socket?.off("newFriendRequest");
+            socket?.off("friendRequestAccepted");
+            socket?.off("friendRequestSent");
+            socket?.off("startChat");
         };
     }, [isLoggedIn, socket]);
 
