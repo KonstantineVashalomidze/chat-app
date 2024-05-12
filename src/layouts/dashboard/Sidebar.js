@@ -10,6 +10,7 @@ import AntSwitch from "../../components/AntSwitch";
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {LogoutUser} from "../../redux/slices/auth";
+import {socket} from "../../sockets/socket";
 
 
 const getPath = (index) => {
@@ -54,6 +55,7 @@ const SideBar = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+    const userId = window.localStorage.getItem("userId");
 
     return (
         <Box p={2} sx={{ zIndex: 1, backgroundColor: theme.palette.mode === "light" ? "#F0F4FA" : theme.palette.background.paper, boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)", height: "100vh", width: 100}}>
@@ -168,7 +170,10 @@ const SideBar = () => {
                         >
                             <Stack spacing={1} px={1}>
                                 {Profile_Menu.map((el) => (
-                                    <MenuItem key={el.title} onClick={() => { handleClose(); navigate(getPath(el.index)); if (el.index === 7) dispatch(LogoutUser()); }}>
+                                    <MenuItem key={el.title} onClick={() => { handleClose(); navigate(getPath(el.index)); if (el.index === 7) {
+                                        dispatch(LogoutUser());
+                                        socket.emit("end", {userId});
+                                    } }}>
                                         <Stack sx={{width: 100}} direction={"row"} alignItems={"center"}
                                                justifyContent={"space-between"}>
                                         <span>

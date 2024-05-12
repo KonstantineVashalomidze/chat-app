@@ -136,14 +136,15 @@ const Chats = () => {
     const backgroundColor = theme.palette.mode === "light" ? "#fff" : theme.palette.background.default;
     const dispatch = useDispatch();
     const [showFriendRequestsDialog, setShowFriendRequestsDialog] = useState(false);
-    const {userId} = useSelector((store) => store.auth);
+    const userId = window.localStorage.getItem("userId");
+
     const {conversations} = useSelector((state) => state.conversation.individualChat);
 
     useEffect(() => {
         socket.emit("getDirectConversation", {userId}, (data) => {
             dispatch(FetchIndividualConversation(data));
         });
-    }, [userId]);
+    }, [userId, dispatch]);
 
 
     const handleHideFriendsRequestsDialog = () => {

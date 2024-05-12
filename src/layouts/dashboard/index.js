@@ -6,9 +6,11 @@ import {Stack} from "@mui/material";
 import Sidebar from "./Sidebar";
 import {useDispatch, useSelector} from "react-redux";
 import {connectSocket, socket} from "../../sockets/socket";
-import {showSnackbar} from "../../redux/slices/app";
-import SelectConversation from "../../assets/Illustration/SelectConversation";
-import {AddIndividualConversation, UpdateIndividualConversation} from "../../redux/slices/conversation";
+import {SelectConversationElement, showSnackbar} from "../../redux/slices/app";
+import {
+    AddIndividualConversation,
+    UpdateIndividualConversation
+} from "../../redux/slices/conversation";
 
 
 const DashboardLayout = () => {
@@ -19,54 +21,54 @@ const DashboardLayout = () => {
     const userId = window.localStorage.getItem("userId");
 
     useEffect(() => {
-        // Check if the user is logged in
+
         if (isLoggedIn) {
-            // Add an event listener to the window onload event
             window.onload = function () {
-                // Check if the URL doesn't have a hash
                 if (!window.location.hash) {
-                    // Add a hash '#loaded' to the current URL
                     window.location = window.location + "#loaded";
-                    // Reload the localStorage
-                    window.localStorage.reload();
+                    window.location.reload();
                 }
             };
-        }
 
-        // Check if the socket is not initialized
-        if (!socket) {
-            // Connect to the socket with the user's ID
-            connectSocket(userId);
-        }
+            window.onload();
 
-        // Event listener for receiving a new friend request
-        socket.on("newFriendRequest", (data) => {
-            // Dispatch an action to show a success snackbar with the received message
-            dispatch(showSnackbar({ severity: "success", message: data.message }));
-        });
-
-        // Event listener for a friend request being accepted
-        socket.on("friendRequestAccepted", (data) => {
-            // Dispatch an action to show a success snackbar with the received message
-            dispatch(showSnackbar({ severity: "success", message: data.message }));
-        });
-
-        // Event listener for a friend request being sent
-        socket.on("friendRequestSent", (data) => {
-            // Dispatch an action to show a success snackbar with the received message
-            dispatch(showSnackbar({ severity: "success", message: data.message }));
-        });
-
-        socket.on("startChat", (data) => {
-            console.log(data);
-            const conversation = conversations.find((e) => e.id === data._id);
-            if (conversation) {
-                dispatch(UpdateIndividualConversation({conversation: data}));
-            } else {
-                dispatch(AddIndividualConversation({conversation: data}));
+            // Check if the socket is not initialized
+            if (!socket) {
+                // Connect to the socket with the user's ID
+                connectSocket(userId);
             }
-            dispatch(SelectConversation({roomId: data._id}));
-        });
+
+            // Event listener for receiving a new friend request
+            socket.on("newFriendRequest", (data) => {
+                // Dispatch an action to show a success snackbar with the received message
+                dispatch(showSnackbar({ severity: data.status, message: data.message }));
+            });
+
+            // Event listener for a friend request being accepted
+            socket.on("friendRequestAccepted", (data) => {
+                console.log("friend request accepted", data);
+                // Dispatch an action to show a success snackbar with the received message
+                dispatch(showSnackbar({ severity: data.status, message: data.message }));
+            });
+
+            // Event listener for a friend request being sent
+            socket.on("friendRequestSent", (data) => {
+                // Dispatch an action to show a success snackbar with the received message
+                dispatch(showSnackbar({ severity: data.status, message: data.message }));
+            });
+
+            socket.on("startChat", (data) => {
+                const conversation = conversations.find((e) => e.id === data._id);
+                if (conversation) {
+                    dispatch(UpdateIndividualConversation({conversation: data}));
+                } else {
+                    dispatch(AddIndividualConversation({conversation: data}));
+                }
+                dispatch(SelectConversationElement({roomId: data._id}));
+            });
+
+
+        }
 
         // Cleanup function to remove the event listeners when the component unmounts
         return () => {
@@ -75,7 +77,7 @@ const DashboardLayout = () => {
             socket?.off("friendRequestSent");
             socket?.off("startChat");
         };
-    }, [isLoggedIn, socket]);
+    }, [isLoggedIn, conversations, userId, dispatch]);
 
 
 

@@ -10,9 +10,7 @@ const connectSocket = (userId) => {
     });
 };
 
-
-
-export {socket, connectSocket};
+export {socket, connectSocket };
 
 
 

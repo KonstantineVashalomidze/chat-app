@@ -23,7 +23,8 @@ import {socket} from "../../../sockets/socket";
 const FriendRequests = ({ open, onClose }) => {
     const [currentTab, setCurrentTab] = useState(0);
     const dispatch = useDispatch();
-    const {userId} = useSelector((store) => store.auth);
+    const userId = window.localStorage.getItem("userId");
+
     useEffect(() => {
         dispatch(FetchUsers());
         dispatch(FetchFriends());
@@ -41,21 +42,26 @@ const FriendRequests = ({ open, onClose }) => {
         setCurrentTab(newValue);
     };
 
-    const renderUserList = (users) => (
+    const renderListItems = (items) => (
         <SimpleBarReact style={{ maxHeight: 300 }}>
             <List>
-                {users.map((user) => (
-                    <ListItem key={user.id}>
+                {items.map((item) => (
+                    <ListItem key={item.id}>
                         <ListItemAvatar>
-                            <Avatar src={user.avatar} />
+                            <Avatar src={item.avatar} />
                         </ListItemAvatar>
-                        <ListItemText primary={`${user.firstName} ${user.lastName}`} />
-                        {currentTab === 0 && <IconButton><Plus /></IconButton>}
-                        {currentTab === 1 && <IconButton onClick={() => { socket.emit("startConversation", {to: user._id, from: userId }) }} ><ChatDots /></IconButton>}
+                        {currentTab !== 2 && <ListItemText primary={`${item.firstName} ${item.lastName}`}/>}
+                        {currentTab === 2 && <ListItemText primary={`${item.sender.firstName} ${item.sender.lastName}`}/>}
+                        {currentTab === 0 && <IconButton onClick={() => { socket.emit("friendRequest", {to: item._id, from: userId}) } } ><Plus /></IconButton>}
+                        {currentTab === 1 && <IconButton onClick={() => { socket.emit("startConversation", {to: item._id, from: userId }) }} ><ChatDots /></IconButton>}
                         {currentTab === 2 && (
                             <>
-                                <Plus />
-                                <Minus />
+                                <IconButton onClick={() => { socket.emit("acceptFriendRequest", { requestId: item._id }) }} >
+                                    <Plus />
+                                </IconButton>
+                                <IconButton >
+                                    <Minus />
+                                </IconButton>
                             </>
                         )}
                     </ListItem>
@@ -73,9 +79,9 @@ const FriendRequests = ({ open, onClose }) => {
                     <Tab label="Friends" />
                     <Tab label="Requests" />
                 </Tabs>
-                {currentTab === 0 && renderUserList(users)}
-                {currentTab === 1 && renderUserList(friends)}
-                {currentTab === 2 && renderUserList(friendRequests)}
+                {currentTab === 0 && renderListItems(users)}
+                {currentTab === 1 && renderListItems(friends)}
+                {currentTab === 2 && renderListItems(friendRequests)}
             </DialogContent>
             <DialogActions>
                 <Button onClick={onClose} color="primary">

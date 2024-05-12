@@ -101,7 +101,6 @@ export function FetchUsers () {
                 Authorization: `Bearer ${getState().auth.token}`,
             }
         }).then((res) => {
-            console.log(res);
             dispatch(slice.actions.updateUsers({users: res.data.data}));
         }).catch((err) => {
             console.log(err);
@@ -117,7 +116,6 @@ export function FetchFriends () {
                 Authorization: `Bearer ${getState().auth.token}`,
             }
         }).then((res) => {
-            console.log(res);
             dispatch(slice.actions.updateFrineds({friends: res.data.data}));
         }).catch((err) => {
             console.log(err);
@@ -135,7 +133,6 @@ export function FetchFriendRequests () {
                 Authorization: `Bearer ${getState().auth.token}`,
             }
         }).then((res) => {
-            console.log(res);
             dispatch(slice.actions.updateFriendRequests({friendRequests: res.data.data}));
         }).catch((err) => {
             console.log(err);
