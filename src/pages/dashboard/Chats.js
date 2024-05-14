@@ -137,7 +137,6 @@ const Chats = () => {
     const dispatch = useDispatch();
     const [showFriendRequestsDialog, setShowFriendRequestsDialog] = useState(false);
     const userId = window.localStorage.getItem("userId");
-
     const {conversations} = useSelector((state) => state.conversation.individualChat);
 
     useEffect(() => {

@@ -19,6 +19,7 @@ const DashboardLayout = () => {
     const {isLoggedIn} = useSelector((state) => state.auth);
     const {conversations} = useSelector((state) => state.conversation.individualChat);
     const userId = window.localStorage.getItem("userId");
+    const {roomId} = useSelector((state) => state.app);
 
     useEffect(() => {
 
@@ -84,7 +85,7 @@ const DashboardLayout = () => {
             socket?.off("friendRequestSent");
             socket?.off("startChat");
         };
-    }, [isLoggedIn, conversations, dispatch, userId]);
+    }, [isLoggedIn, conversations, dispatch, userId, roomId]);
 
 
 

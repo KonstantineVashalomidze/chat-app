@@ -8,7 +8,7 @@ const USER_ID = window.localStorage.getItem("userId");
 const initialState = {
     individualChat: {
         conversations: [],
-        currentConversation: [],
+        currentConversation: null,
         currentMessages: [],
     },
     groupChat: {
@@ -76,7 +76,6 @@ const slice = createSlice({
                 online: user.status === "Online"
             });
         }
-
 
     }
 });
