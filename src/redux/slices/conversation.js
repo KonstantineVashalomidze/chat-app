@@ -24,13 +24,12 @@ const slice = createSlice({
     reducers: {
         fetchIndividualConversations(state, action) {
             const conversations = action.payload.conversations.map(e => {
-                const user = e.participants.find((el) => el._id.toString() !== USER_ID)
-
+                const user = e.participants.find((el) => el._id.toString() !== USER_ID);
                 return {
                     id: e._id,
                     userId: user._id,
                     img: faker.image.avatar(),
-                    name: `${user.firstName}` `${user.lastName}`,
+                    name: `${user.firstName} ${user.lastName}`,
                     msg: faker.music.songName(),
                     time: "9:39",
                     unread: 0,
@@ -38,6 +37,7 @@ const slice = createSlice({
                     online: user.status === "Online"
                 }
             });
+
             state.individualChat.conversations = conversations;
         },
         updateIndividualConversation(state, action) {
@@ -51,7 +51,7 @@ const slice = createSlice({
                         id: conversation._id,
                         userId: user._id,
                         img: faker.image.avatar(),
-                        name: `${user.firstName}` `${user.lastName}`,
+                        name: `${user.firstName} ${user.lastName}`,
                         msg: faker.music.songName(),
                         time: "9:39",
                         unread: 0,
@@ -68,7 +68,7 @@ const slice = createSlice({
                 id: conversation._id,
                 userId: user._id,
                 img: faker.image.avatar(),
-                name: `${user.firstName}` `${user.lastName}`,
+                name: `${user.firstName} ${user.lastName}`,
                 msg: faker.music.songName(),
                 time: "9:39",
                 unread: 0,
@@ -85,23 +85,24 @@ export default slice.reducer;
 
 
 
-export function FetchIndividualConversation ({conversations}) {
+export function FetchIndividualConversation (data) {
+
     return async (dispatch, getState) => {
-        dispatch(slice.actions.fetchIndividualConversations({conversations}));
+        dispatch(slice.actions.fetchIndividualConversations({conversations: data}));
     };
 };
 
 
 
-export function UpdateIndividualConversation ({conversation}) {
+export function UpdateIndividualConversation (data) {
     return async (dispatch, getState) => {
-        dispatch(slice.actions.updateIndividualConversation({conversation}));
+        dispatch(slice.actions.updateIndividualConversation({conversations: data}));
     };
 };
 
-export function AddIndividualConversation ({conversation}) {
+export function AddIndividualConversation ({data}) {
     return async (dispatch, getState) => {
-        dispatch(slice.actions.addIndividualConversation({conversation}));
+        dispatch(slice.actions.addIndividualConversation({conversations: data}));
     };
 };
 

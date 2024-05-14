@@ -141,7 +141,7 @@ const Chats = () => {
     const {conversations} = useSelector((state) => state.conversation.individualChat);
 
     useEffect(() => {
-        socket.emit("getDirectConversation", {userId}, (data) => {
+        socket.emit("getIndividualConversation", {userId}, (data) => {
             dispatch(FetchIndividualConversation(data));
         });
     }, [userId, dispatch]);

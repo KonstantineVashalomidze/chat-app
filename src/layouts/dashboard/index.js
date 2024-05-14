@@ -46,7 +46,6 @@ const DashboardLayout = () => {
 
             // Event listener for a friend request being accepted
             socket.on("friendRequestAccepted", (data) => {
-                console.log("friend request accepted", data);
                 // Dispatch an action to show a success snackbar with the received message
                 dispatch(showSnackbar({ severity: data.status, message: data.message }));
             });
@@ -57,13 +56,21 @@ const DashboardLayout = () => {
                 dispatch(showSnackbar({ severity: data.status, message: data.message }));
             });
 
+            // Listen for the "startChat" event from the server
+            // data: An object containing the conversation details
             socket.on("startChat", (data) => {
+                // Check if the conversation already exists in the local `conversations` array
+                // by finding an element whose `id` matches the `_id` of the received conversation data
                 const conversation = conversations.find((e) => e.id === data._id);
-                if (conversation) {
+                if (conversation) {    // If the conversation exists in the local array
+                    // Update the existing conversation in the Redux store with the latest conversation data
                     dispatch(UpdateIndividualConversation({conversation: data}));
-                } else {
+                } else {    // If the conversation does not exist in the local array
+                    // Add the new conversation to the Redux store
                     dispatch(AddIndividualConversation({conversation: data}));
                 }
+                // Dispatch an action to select the current conversation in the UI
+                // by passing the `_id` of the conversation as the `roomId`
                 dispatch(SelectConversationElement({roomId: data._id}));
             });
 
@@ -77,7 +84,7 @@ const DashboardLayout = () => {
             socket?.off("friendRequestSent");
             socket?.off("startChat");
         };
-    }, [isLoggedIn, conversations, userId, dispatch]);
+    }, [isLoggedIn, conversations, dispatch, userId]);
 
 
 

@@ -42,7 +42,7 @@ const slice = createSlice({
         updateUsers(state, action) {
             state.users = action.payload.users;
         },
-        updateFrineds(state, action) {
+        updateFriends(state, action) {
             state.friends = action.payload.friends;
         },
         updateFriendRequests(state, action) {
@@ -116,7 +116,7 @@ export function FetchFriends () {
                 Authorization: `Bearer ${getState().auth.token}`,
             }
         }).then((res) => {
-            dispatch(slice.actions.updateFrineds({friends: res.data.data}));
+            dispatch(slice.actions.updateFriends({friends: res.data.data}));
         }).catch((err) => {
             console.log(err);
         });

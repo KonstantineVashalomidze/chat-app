@@ -1,9 +1,8 @@
 import {Avatar, Badge, Divider, IconButton, Stack, Typography} from "@mui/material";
-import {faker} from "@faker-js/faker";
 import {styled, useTheme} from "@mui/material/styles";
 import {CaretDown, MagnifyingGlass, Phone, VideoCamera} from "phosphor-react";
 import {toggleSideBar} from "../../redux/slices/app";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 
 
@@ -43,19 +42,24 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 const Header = ({isGroup}) => {
     const theme = useTheme();
     const dispatch = useDispatch();
+    const {roomId} = useSelector((state) => state.app);
+    const toUser = useSelector((state) => state.conversation.individualChat).conversations.find(element => element.id === roomId);
+
 
     return (
         <Stack alignItems={"center"} direction={"row"} justifyContent={"space-between"} sx={{width: "100%", height: "100%"}}>
             <Stack direction={"row"} spacing={2} >
-                <StyledBadge overlap={"circular"} anchorOrigin={{vertical: "bottom", horizontal: "right"}} variant={"dot"}>
-                    <Avatar onClick={() => {if (!isGroup) dispatch(toggleSideBar()); } } alt={faker.name.fullName()} src={faker.image.avatar()} sx={{boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)", cursor: "pointer"}} />
-                </StyledBadge>
+                {toUser.online ? (<StyledBadge overlap={"circular"} anchorOrigin={{vertical: "bottom", horizontal: "right"}} variant={"dot"}>
+                    <Avatar onClick={() => {if (!isGroup) dispatch(toggleSideBar()); } } alt={toUser.name} src={toUser.avatar} sx={{boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)", cursor: "pointer"}} />
+                </StyledBadge>) :
+                   (<Avatar onClick={() => {if (!isGroup) dispatch(toggleSideBar()); } } alt={toUser.name} src={toUser.avatar} sx={{boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)", cursor: "pointer"}} />)
+                }
                 <Stack spacing={0.2} >
                     <Typography variant={"subtitle2"}>
-                        {faker.name.fullName()}
+                        {toUser.name}
                     </Typography>
                     <Typography variant={"caption"}>
-                        Online
+                        {toUser.online ? "Online" : "Offline"}
                     </Typography>
                 </Stack>
             </Stack>

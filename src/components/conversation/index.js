@@ -9,8 +9,6 @@ import SimpleBarReact from "simplebar-react";
 const Conversation = ({isGroup}) => {
     const theme = useTheme();
 
-
-
     const backgroundColor = theme.palette.mode === "light"
         ? "#fff"
         : theme.palette.background.default;

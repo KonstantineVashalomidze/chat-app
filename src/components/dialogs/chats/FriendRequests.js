@@ -24,12 +24,13 @@ const FriendRequests = ({ open, onClose }) => {
     const [currentTab, setCurrentTab] = useState(0);
     const dispatch = useDispatch();
     const userId = window.localStorage.getItem("userId");
+    const {message} = useSelector((state) => state.app.snackbar);
 
     useEffect(() => {
         dispatch(FetchUsers());
         dispatch(FetchFriends());
         dispatch(FetchFriendRequests());
-    }, [dispatch]);
+    }, [message, dispatch]);
 
     const {users} = useSelector((store) => store.app);
     const {friends} = useSelector((store) => store.app);
@@ -53,7 +54,7 @@ const FriendRequests = ({ open, onClose }) => {
                         {currentTab !== 2 && <ListItemText primary={`${item.firstName} ${item.lastName}`}/>}
                         {currentTab === 2 && <ListItemText primary={`${item.sender.firstName} ${item.sender.lastName}`}/>}
                         {currentTab === 0 && <IconButton onClick={() => { socket.emit("friendRequest", {to: item._id, from: userId}) } } ><Plus /></IconButton>}
-                        {currentTab === 1 && <IconButton onClick={() => { socket.emit("startConversation", {to: item._id, from: userId }) }} ><ChatDots /></IconButton>}
+                        {currentTab === 1 && <IconButton onClick={() => { socket.emit("startConversation", {to: item._id, from: userId }); }} ><ChatDots /></IconButton>}
                         {currentTab === 2 && (
                             <>
                                 <IconButton onClick={() => { socket.emit("acceptFriendRequest", { requestId: item._id }) }} >
