@@ -1,6 +1,5 @@
 import { faker } from "@faker-js/faker";
 import {
-  Calendar,
   Chats,
   Gear,
   GearSix,
@@ -41,10 +40,6 @@ const Nav_Buttons = [
     index: 2,
     icon: <Phone />,
   },
-  {
-    index: 3,
-    icon: <Calendar />
-  }
 ];
 
 const Nav_Setting = [

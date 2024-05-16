@@ -75,9 +75,30 @@ const slice = createSlice({
                 pinned:false,
                 online: user.status === "Online"
             });
+        },
+        setCurrentConversation(state, action) {
+            state.individualChat.currentConversation = action.payload;
+        },
+        fetchCurrentMessages(state, action) {
+            const messages = action.payload.messages;
+            const formattedMessages = messages.map((el) => ({
+                id: el._id,
+                type: "msg",
+                subtype: el.type,
+                message: el.text,
+                incoming: el.to === USER_ID,
+                outgoing: el.from === USER_ID,
+            }));
+            state.individualChat.current_messages = formattedMessages;
+        },
+        addDirectMessage(state, action) {
+            state.individualChat.currentMessages.push(action.payload.message);
         }
+    },
 
-    }
+
+
+
 });
 
 export default slice.reducer;
@@ -91,18 +112,27 @@ export function FetchIndividualConversation (data) {
     };
 };
 
-
-
 export function UpdateIndividualConversation (data) {
     return async (dispatch, getState) => {
-        dispatch(slice.actions.updateIndividualConversation({conversations: data}));
+        dispatch(slice.actions.updateIndividualConversation({currentConversation: data}));
     };
 };
 
-export function AddIndividualConversation ({data}) {
+export function AddIndividualConversation (data) {
     return async (dispatch, getState) => {
         dispatch(slice.actions.addIndividualConversation({conversations: data}));
     };
 };
 
+export const FetchCurrentMessages = (data) => {
+    return async(dispatch, getState) => {
+        dispatch(slice.actions.fetchCurrentMessages({messages: data}));
+    }
+}
 
+
+export const SetCurrentConversation = (currentConversation) => {
+    return async (dispatch, getState) => {
+        dispatch(slice.actions.setCurrentConversation(currentConversation));
+    };
+};

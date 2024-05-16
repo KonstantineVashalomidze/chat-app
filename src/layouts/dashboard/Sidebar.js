@@ -3,7 +3,7 @@ import {useTheme} from "@mui/material/styles";
 import {Avatar, Box, Divider, IconButton, Menu, MenuItem, Stack} from "@mui/material";
 import Logo from "../../assets/Images/logo.ico";
 import {Nav_Buttons, Profile_Menu} from "../../data";
-import {Calendar, Chats, Gear, Phone, Users} from "phosphor-react";
+import {Chats, Gear, Phone, Users} from "phosphor-react";
 import {faker} from "@faker-js/faker";
 import useSettings from "../../hooks/useSettings";
 import AntSwitch from "../../components/AntSwitch";
@@ -21,8 +21,6 @@ const getPath = (index) => {
             return "/group";
         case 2:
             return "/call-history";
-        case 3:
-            return "/calendar";
         case 4:
             return "/settings";
         case 5:
@@ -82,7 +80,6 @@ const SideBar = () => {
                                             {el.index === 0 && <Chats color={theme.palette.primary.main} />}
                                             {el.index === 1 && <Users color={theme.palette.primary.main} />}
                                             {el.index === 2 && <Phone color={theme.palette.primary.main} />}
-                                            {el.index === 3 && <Calendar color={theme.palette.primary.main} />}
                                         </IconButton>
                                         <Box
                                             sx={{

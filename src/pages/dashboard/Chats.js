@@ -9,7 +9,11 @@ import FriendRequests from "../../components/dialogs/chats/FriendRequests";
 import {useDispatch, useSelector} from "react-redux";
 import {SelectConversationElement} from "../../redux/slices/app";
 import {socket} from "../../sockets/socket";
-import {FetchIndividualConversation} from "../../redux/slices/conversation";
+import {
+    FetchCurrentMessages,
+    FetchIndividualConversation,
+    SetCurrentConversation
+} from "../../redux/slices/conversation";
 
 export const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
@@ -138,12 +142,24 @@ const Chats = () => {
     const [showFriendRequestsDialog, setShowFriendRequestsDialog] = useState(false);
     const userId = window.localStorage.getItem("userId");
     const {conversations} = useSelector((state) => state.conversation.individualChat);
+    const {roomId} = useSelector((state) => state.app);
+
 
     useEffect(() => {
         socket.emit("getIndividualConversation", {userId}, (data) => {
             dispatch(FetchIndividualConversation(data));
         });
-    }, [userId, dispatch]);
+
+        socket.emit("getMessages", {conversationId: roomId}, (data) => {
+            const current = conversations.find((el) => el?.id === roomId);
+
+            socket.emit("getMessages", { conversation_id: current?.id }, (data) => {
+                dispatch(FetchCurrentMessages({ data: data }));
+            });
+
+            dispatch(SetCurrentConversation(current));
+        });
+    }, [roomId]);
 
 
     const handleHideFriendsRequestsDialog = () => {
